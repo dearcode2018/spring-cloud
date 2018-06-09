@@ -1,0 +1,23 @@
+Spring Boot
+
+1.配置文件
+使用 application.properties 或 application.yaml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

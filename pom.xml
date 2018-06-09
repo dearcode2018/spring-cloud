@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+	<!-- 继承 spring boot -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.2.RELEASE</version>
+	</parent>    
+  
+  <groupId>com.hua</groupId>
+  <artifactId>spring-cloud-entire</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+  <name>spring-cloud-entire</name>
+  <description>spring-cloud Maven Entire Project</description>
+  
+  	<!-- 模块-子项目 -->
+	<modules>
+		<!-- 模板 -->
+		<module>spring-boot-template</module>		
+		<module>spring-cloud-core</module>			
+		<!--
+		<module></module>		
+		<module></module>		
+		<module></module>		
+		<module></module>		
+		<module></module>		
+		<module></module>		
+		<module></module>	
+		-->
+	</modules>
+ 
+	<!-- 公共属性 -->
+	<properties>
+		<jdk.version>1.8</jdk.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.version>0.0.1</maven.version>
+		<maven.plugin.compiler.version>3.3</maven.plugin.compiler.version>
+		<maven.plugin.source.version>2.4</maven.plugin.source.version>
+		<maven.plugin.surefire.version>2.18.1</maven.plugin.surefire.version>
+		<maven.plugin.assembly.version>2.5.5</maven.plugin.assembly.version>
+		<maven.plugin.resources.version>2.7</maven.plugin.resources.version>
+		<maven.plugin.dependency.version>2.10</maven.plugin.dependency.version>
+		<maven.plugin.war.version>3.0</maven.plugin.war.version>
+		<spring.cloud.core.version>0.0.1</spring.cloud.core.version>
+		<web.version>0.0.1</web.version>
+	</properties>  
+  
+  
+ 	<!-- 公共构建 -->
+	<build>
+		<plugins>
+
+			<!-- 编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.plugin.compiler.version}</version>
+				<configuration>
+					<compilerVersion>${jdk.version}</compilerVersion>
+					<!-- 编译的类文件是否包含调试信息 -->
+					<debug>true</debug>
+					<!-- 是否展示详细的设置信息 -->
+					<detail>true</detail>
+					<!-- 指定编译文件的编码 -->
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<!-- 编译失败是否停止 -->
+					<failOnError>true</failOnError>
+					<!-- 是否强制jdk版本 -->
+					<forceJavacCompilerUse>true</forceJavacCompilerUse>
+					<!-- 是否分开执行编译，设置为true会导致部分输出中文乱码 -->
+					<fork>false</fork>
+					<!-- 输出源码文件名 -->
+					<outputFileName>a.jar</outputFileName>
+					<!-- 源码位置是否显示过期api被使用 -->
+					<showDeprecation>true</showDeprecation>
+					<!-- 是否输出编译警告 -->
+					<showWarnings>false</showWarnings>
+					<!-- 忽略测试 -->
+					<skip>true</skip>
+					<!-- 是否忽略main源码 -->
+					<skipMain>false</skipMain>
+					<!-- main编译器版本 source 和 target 要保持一致 -->
+					<source>${jdk.version}</source>
+					<!-- main编译器版本 source 和 target 要保持一致 -->
+					<target>${jdk.version}</target>
+					<!-- 测试编译器版本 source 和 target 要保持一致 -->
+					<testSource>${jdk.version}</testSource>
+					<!-- 测试编译器版本 source 和 target 要保持一致 -->
+					<testTarget>${jdk.version}</testTarget>
+					<!-- 输出编译器详细运行信息 -->
+					<verbose>false</verbose>
+
+				</configuration>
+			</plugin>
+
+			<!-- 资源插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven.plugin.resources.version}</version>
+				<configuration>
+					<!-- 指定文件的编码 -->
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<!-- 包含空目录 -->
+					<includeEmptyDirs>true</includeEmptyDirs>
+					<!-- 是否直接覆盖 -->
+					<overwrite>true</overwrite>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+						<configuration>
+							<includeEmptyDirs>true</includeEmptyDirs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- 打包插件，打包当前项目相关文件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.plugin.surefire.version}</version>
+				<configuration>
+					<!-- 解决 控制台输出测试信息 - 乱码 -->
+					<argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
+					<reuseForks>true</reuseForks>
+					<!-- 打包时跳过单元测试 -->
+					<skip>true</skip>
+					<skipTests>true</skipTests>
+					<!-- 忽略测试失败 -->
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+
+			<!-- 解决 web项目pom.xml报错 -->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<version>${maven.plugin.war.version}</version>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	
+</project>
