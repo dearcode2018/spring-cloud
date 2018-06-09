@@ -11,7 +11,8 @@
 
 【项目规划】
 
-1)
+1) 参考
+http://www.ityouknow.com/spring-cloud.html
 
 2)
 
