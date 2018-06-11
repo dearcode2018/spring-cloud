@@ -1,0 +1,35 @@
+Spring-Cloud-Eureka
+
+1.简介
+Eureka是Netflix公司的分布式开源框架.
+Eureka基于rest服务，主要用在AWS云中使用，定位服务来进行中间层服务器的负载均衡和故障转移.
+Spring Cloud Eureka封装了Eureka模块来实现服务注册和发现. Eureka采用了C/S设计架构，Eureka Server作为服务注册功能的服务器，是
+服务注册中心，其他系统的微服务,使用Eureka Client连接到Eureka Server，并维持心跳连接.
+这样系统维护人员就可以通过Eureka Server来监控系统的各个微服务是否正常运行. Spring Cloud的其他模块(例如 Zuul) 就可以通过Eureka Server
+来发现系统中的其他微服务，并执行相关的逻辑.
+
+2.服务端
+提供服务注册与发现
+
+3.生产者客户端
+服务提供方
+Eureka 生产者客户端: 连接Eureka服务器，将服务注册到Eureka服务端
+
+4.消费者客户端
+服务消费方
+Eureka 消费者客户端: 连接Eureka服务器，从Eureka服务端获取服务信息
+从Eureka获取注册服务列表，从而能够消费服务.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

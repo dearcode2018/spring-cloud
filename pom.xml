@@ -20,6 +20,9 @@
 		<!-- 模板 -->
 		<module>spring-cloud-template</module>		
 		<module>spring-cloud-core</module>			
+		<module>spring-cloud-eureka</module>
+		<module>spring-cloud-eureka-client</module>
+		<module>spring-cloud-eureka-server</module>
 		<!--
 		<module></module>		
 		<module></module>		
@@ -45,6 +48,8 @@
 		<maven.plugin.war.version>3.0</maven.plugin.war.version>
 		<spring.cloud.core.version>0.0.1</spring.cloud.core.version>
 		<web.version>0.0.1</web.version>
+		<spring-cloud-starter.version>1.3.3.RELEASE</spring-cloud-starter.version>
+		<spring-cloud-eureka.version>0.0.1</spring-cloud-eureka.version>		
 	</properties>  
   
   
@@ -56,7 +61,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.plugin.compiler.version}</version>
 				<configuration>
 					<compilerVersion>${jdk.version}</compilerVersion>
 					<!-- 编译的类文件是否包含调试信息 -->
@@ -99,7 +103,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven.plugin.resources.version}</version>
 				<configuration>
 					<!-- 指定文件的编码 -->
 					<encoding>${project.build.sourceEncoding}</encoding>
@@ -125,7 +128,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven.plugin.surefire.version}</version>
 				<configuration>
 					<!-- 解决 控制台输出测试信息 - 乱码 -->
 					<argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
@@ -148,5 +150,14 @@
 
 		</plugins>
 	</build>
+	
+	<!--  -->
+ 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter</artifactId>
+			<version>${spring-cloud-starter.version}</version>
+		</dependency>	 
+	</dependencies>
 	
 </project>
