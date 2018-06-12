@@ -27,17 +27,22 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.hua</groupId>
-			<artifactId>spring-cloud-eureka</artifactId>
-			<version>${spring-cloud-eureka.version}</version>
-		</dependency>		
-	
  		<dependency>
 			<groupId>com.hua</groupId>
 			<artifactId>web</artifactId>
 			<version>${web.version}</version>
 		</dependency> 
+		
+		<dependency>
+			<groupId>com.hua</groupId>
+			<artifactId>spring-cloud-core</artifactId>
+			<version>${spring.cloud.core.version}</version>
+		</dependency>			
+	
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>		
 		
 		<!-- spring boot starter web -->
 		<dependency>
