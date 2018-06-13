@@ -5,7 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.2.RELEASE</version>
+		<!-- spring boot的版本要和 spring cloud的版本对应起来，高版本则不支持 -->
+		<version>2.0.1.RELEASE</version>
 	</parent>    
   
   <groupId>com.hua</groupId>
@@ -47,8 +48,8 @@
 		<maven.plugin.war.version>3.0</maven.plugin.war.version>
 		<spring.cloud.core.version>0.0.1</spring.cloud.core.version>
 		<web.version>0.0.1</web.version>
-		<spring-cloud-starter.version>1.3.3.RELEASE</spring-cloud-starter.version>
-		<spring-cloud.version>Finchley.RC2</spring-cloud.version>		
+		<spring-cloud.version>Finchley.RC2</spring-cloud.version>
+				
 	</properties>  
   
   
@@ -152,10 +153,11 @@
 	
 	<!--  -->
  	<dependencies>
-		<dependency>
+	<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter</artifactId>
-		</dependency>	 
+		</dependency>
+		
 	</dependencies>
 	
 <repositories>
@@ -169,7 +171,7 @@
     </repository>
 </repositories>	
 	
-	<!--  -->
+    <!-- 将依赖放入 dependencyManagement 中  可以解决 spring boot 父级依赖的冲突-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -179,6 +181,25 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+          
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>		   
+            
         </dependencies>
     </dependencyManagement>	
 	
