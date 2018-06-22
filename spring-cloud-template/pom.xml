@@ -33,11 +33,11 @@
 			<version>${spring.cloud.core.version}</version>
 		</dependency>		
 	
- 		<dependency>
+<!-- 		<dependency>
 			<groupId>com.hua</groupId>
 			<artifactId>web</artifactId>
 			<version>${web.version}</version>
-		</dependency> 
+		</dependency> -->
 		
 		<!-- spring boot starter web -->
 		<dependency>
