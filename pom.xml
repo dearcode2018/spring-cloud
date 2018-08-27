@@ -23,6 +23,7 @@
 		<module>spring-cloud-core</module>			
 		<module>spring-cloud-config</module>		
 		<module>spring-cloud-eureka</module>
+		<module>spring-cloud-eureka-replica</module>
 		<module>spring-cloud-hystrix</module>		
 		<module>spring-cloud-ribbon</module>		
 		<module>spring-cloud-zuul</module>		
@@ -53,7 +54,6 @@
 		<spring.cloud.core.version>0.0.1</spring.cloud.core.version>
 		<web.version>0.0.1</web.version>
 		<spring-cloud.version>Finchley.RC2</spring-cloud.version>
-				
 	</properties>  
   
   
@@ -203,7 +203,7 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>		   
-            
+          
         </dependencies>
     </dependencyManagement>	
 	

@@ -6,9 +6,8 @@
  */
 package com.hua.controller;
 
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hua.bean.ResultBean;
@@ -31,7 +30,8 @@ public class SpeakController extends BaseController
 	 * @return
 	 * @author qianye.zheng
 	 */
-	@GetMapping("/say")
+	//@GetMapping(path = "/say", produces = {})
+	@RequestMapping(method = RequestMethod.GET, value = "/say")
 	public ResultBean say(final String content)
 	{
 		ResultBean resultBean = new ResultBean();

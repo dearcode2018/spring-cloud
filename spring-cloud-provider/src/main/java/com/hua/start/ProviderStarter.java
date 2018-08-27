@@ -18,7 +18,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication(scanBasePackages = {"com.hua"})
 /*  */
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 @EnableEurekaClient
 public class ProviderStarter
 {

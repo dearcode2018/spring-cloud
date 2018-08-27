@@ -76,6 +76,12 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>	 -->
+	
+<!-- 		<dependency>
+		    <groupId>com.netflix.archaius</groupId>
+		    <artifactId>archaius-core</artifactId>
+		    <version>${netflix.archaius.version}</version>
+		</dependency>	 -->
 		
 	</dependencies>
 

@@ -1,5 +1,5 @@
 /**
-  * @filename ApplicationStarter.java
+  * @filename ConsumerStarter.java
   * @description 
   * @version 1.0
   * @author qianye.zheng
@@ -8,14 +8,20 @@ package com.hua.start;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
  /**
- * @type ApplicationStarter
+ * @type ConsumerStarter
  * @description 应用启动器
  * @author qianye.zheng
  */
 @SpringBootApplication(scanBasePackages = {"com.hua"})
-public class ApplicationStarter
+@EnableEurekaClient
+@EnableDiscoveryClient
+@EnableFeignClients
+public class ConsumerStarter
 {
 	
 	
@@ -27,7 +33,7 @@ public class ApplicationStarter
 	 */
 	public static void main(String[] args)
 	{
-		SpringApplication.run(ApplicationStarter.class, args);
+		SpringApplication.run(ConsumerStarter.class, args);
 	}
 	
 	

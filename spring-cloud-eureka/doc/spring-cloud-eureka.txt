@@ -21,13 +21,46 @@ Eureka 消费者客户端: 连接Eureka服务器，从Eureka服务端获取服�
 从Eureka获取注册服务列表，从而能够消费服务.
 
 
+Eureka环境搭建
+1) 引入依赖
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
 
+2) 配置
+# Server Properties
+# 默认8761端口
+server.port=6868
+server.address=localhost
+server.sessionTimeout=60
+# spring boot default contextPath is /
+#server.servlet.context-path=/
+server.servlet.context-path=/spring-cloud-eureka
+spring.application.name=spring-cloud-eureka
 
-
-
-
-
-
+eureka.client.registerWithEureka=true
+eureka.client.fetchRegistry=true
+# 另外一个Eureka应用，2个Eureka做HA，Eureka的服务路径是 /erreka
+eureka.client.serviceUrl.defaultZone=http://localhost:6869/spring-cloud-eureka-replica/eureka
+eureka.instance.prefer-ip-address=true
+eureka.instance.ip-address=127.0.0.1
+eureka.instance.instance-id=${spring.application.name}:${server.port}
+eureka.server.enable-self-preservation=false
+eureka.server.eviction-interval-timer-in-ms=6000
+3) 注解
+/* 在启动器上添加 */
+@SpringBootApplication(scanBasePackages = {"com.hua"})
+// 声明一个Eureka服务
+@EnableEurekaServer
+@EnableDiscoveryClient
+4) 启动
+分别启动2个Eureka应用，即spring-cloud-eureka、spring-cloud-eureka-replica
+5) 访问
+在浏览器输入: 
+http://127.0.0.1:6868/spring-cloud-eureka/ 
+http://127.0.0.1:6869/spring-cloud-eureka-replica/
+可以在 <Instances currently registered with Eureka> 中看到已经注册的实例
 
 
 

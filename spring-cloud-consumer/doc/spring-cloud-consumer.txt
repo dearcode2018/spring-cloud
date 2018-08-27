@@ -1,0 +1,54 @@
+Consumer
+
+服务消费者
+
+环境搭建
+1) 引入依赖
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>	
+2) 配置
+# Server Properties
+server.port=7070
+server.address=127.0.0.1
+server.sessionTimeout=60
+# spring boot default contextPath is /
+#server.servlet.context-path=/
+server.servlet.context-path=/spring-cloud-consumer
+spring.application.name=spring-cloud-consumer
+
+
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=true
+# 注册到多个Eureka应用，多个用逗号隔开
+eureka.client.serviceUrl.defaultZone=http://localhost:6868/spring-cloud-eureka/eureka/,http://localhost:6869/spring-cloud-eureka-replica/eureka/
+# service name show on eureka console
+eureka.instance.instance-id=${server.address}/${spring.application.name}:${server.port}
+
+3) 注解
+在启动器上标注
+@SpringBootApplication(scanBasePackages = {"com.hua"})
+@EnableEurekaClient
+
+4) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

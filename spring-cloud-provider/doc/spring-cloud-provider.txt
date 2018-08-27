@@ -1,0 +1,56 @@
+Provider
+
+服务提供者
+
+环境搭建
+1) 引入依赖
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>	
+2) 配置
+# Server Properties
+server.port=8080
+server.address=127.0.0.1
+server.sessionTimeout=60
+# spring boot default contextPath is /
+#server.servlet.context-path=/
+server.servlet.context-path=/spring-cloud-provider
+spring.application.name=spring-cloud-provider
+
+# 注册到Eureka
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=false
+# 注册到多个Eureka应用，多个用逗号隔开
+eureka.client.serviceUrl.defaultZone=http://localhost:6868/spring-cloud-eureka/eureka/,http://localhost:6869/spring-cloud-eureka-replica/eureka/
+# service name show on eureka console
+eureka.instance.instance-id=${server.address}/${spring.application.name}:${server.port}
+
+3) 注解
+在启动器上标注
+@SpringBootApplication(scanBasePackages = {"com.hua"})
+/*  */
+//@EnableDiscoveryClient
+@EnableEurekaClient
+4) 启动
+启动提供者，在Eureka控制台可以看到注册成功的服务
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
