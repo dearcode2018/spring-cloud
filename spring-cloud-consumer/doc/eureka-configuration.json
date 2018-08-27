@@ -1,0 +1,507 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client",
+      "type": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.transport",
+      "sourceMethod": "getTransport()",
+      "type": "com.netflix.discovery.shared.transport.EurekaTransportConfig"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance",
+      "type": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": false,
+      "name": "eureka.client.allow-redirects",
+      "description": "Indicates whether server can redirect a client request to a backup server\/cluster.\n If set to false, the server will handle the request directly, If set to true, it\n may send HTTP redirect to the client, with a new server location.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.availability-zones",
+      "description": "Gets the list of availability zones (used in AWS data centers) for the region in\n which this instance resides.\n\n The changes are effective at runtime at the next registry fetch cycle as specified\n by registryFetchIntervalSeconds.",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.backup-registry-impl",
+      "description": "Gets the name of the implementation which implements BackupRegistry to fetch the\n registry information as a fall back option for only the first time when the eureka\n client starts.\n\n This may be needed for applications which needs additional resiliency for registry\n information without which it cannot operate.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 10,
+      "name": "eureka.client.cache-refresh-executor-exponential-back-off-bound",
+      "description": "Cache refresh executor exponential back off related property. It is a maximum\n multiplier value for retry delay, in case where a sequence of timeouts occurred.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 2,
+      "name": "eureka.client.cache-refresh-executor-thread-pool-size",
+      "description": "The thread pool size for the cacheRefreshExecutor to initialise with",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.client-data-accept",
+      "description": "EurekaAccept name for client data accept",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.decoder-name",
+      "description": "This is a transient config and once the latest codecs are stable, can be removed\n (as there will only be one)",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": false,
+      "name": "eureka.client.disable-delta",
+      "description": "Indicates whether the eureka client should disable fetching of delta and should\n rather resort to getting the full registry information.\n\n Note that the delta fetches can reduce the traffic tremendously, because the rate\n of change with the eureka server is normally much lower than the rate of fetches.\n\n The changes are effective at runtime at the next registry fetch cycle as specified\n by registryFetchIntervalSeconds",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": "_-",
+      "name": "eureka.client.dollar-replacement",
+      "description": "Get a replacement string for Dollar sign <code>$<\/code> during\n serializing\/deserializing information in eureka server.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": true,
+      "name": "eureka.client.enabled",
+      "description": "Flag to indicate that the Eureka client is enabled.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.encoder-name",
+      "description": "This is a transient config and once the latest codecs are stable, can be removed\n (as there will only be one)",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": "__",
+      "name": "eureka.client.escape-char-replacement",
+      "description": "Get a replacement string for underscore sign <code>_<\/code> during\n serializing\/deserializing information in eureka server.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 30,
+      "name": "eureka.client.eureka-connection-idle-timeout-seconds",
+      "description": "Indicates how much time (in seconds) that the HTTP connections to eureka server can\n stay idle before it can be closed.\n\n In the AWS environment, it is recommended that the values is 30 seconds or less,\n since the firewall cleans up the connection information after a few mins leaving\n the connection hanging in limbo",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 5,
+      "name": "eureka.client.eureka-server-connect-timeout-seconds",
+      "description": "Indicates how long to wait (in seconds) before a connection to eureka server needs\n to timeout. Note that the connections in the client are pooled by\n org.apache.http.client.HttpClient and this setting affects the actual connection\n creation and also the wait time to get the connection from the pool.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.eureka-server-d-n-s-name",
+      "description": "Gets the DNS name to be queried to get the list of eureka servers.This information\n is not required if the contract returns the service urls by implementing\n serviceUrls.\n\n The DNS mechanism is used when useDnsForFetchingServiceUrls is set to true and the\n eureka client expects the DNS to configured a certain way so that it can fetch\n changing eureka servers dynamically.\n\n The changes are effective at runtime.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.eureka-server-port",
+      "description": "Gets the port to be used to construct the service url to contact eureka server when\n the list of eureka servers come from the DNS.This information is not required if\n the contract returns the service urls eurekaServerServiceUrls(String).\n\n The DNS mechanism is used when useDnsForFetchingServiceUrls is set to true and the\n eureka client expects the DNS to configured a certain way so that it can fetch\n changing eureka servers dynamically.\n\n The changes are effective at runtime.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 8,
+      "name": "eureka.client.eureka-server-read-timeout-seconds",
+      "description": "Indicates how long to wait (in seconds) before a read from eureka server needs to\n timeout.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 200,
+      "name": "eureka.client.eureka-server-total-connections",
+      "description": "Gets the total number of connections that is allowed from eureka client to all\n eureka servers.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 50,
+      "name": "eureka.client.eureka-server-total-connections-per-host",
+      "description": "Gets the total number of connections that is allowed from eureka client to a eureka\n server host.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.eureka-server-u-r-l-context",
+      "description": "Gets the URL context to be used to construct the service url to contact eureka\n server when the list of eureka servers come from the DNS. This information is not\n required if the contract returns the service urls from eurekaServerServiceUrls.\n\n The DNS mechanism is used when useDnsForFetchingServiceUrls is set to true and the\n eureka client expects the DNS to configured a certain way so that it can fetch\n changing eureka servers dynamically. The changes are effective at runtime.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 0,
+      "name": "eureka.client.eureka-service-url-poll-interval-seconds",
+      "description": "Indicates how often(in seconds) to poll for changes to eureka server information.\n Eureka servers could be added or removed and this setting controls how soon the\n eureka clients should know about it.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": true,
+      "name": "eureka.client.fetch-registry",
+      "description": "Indicates whether this client should fetch eureka registry information from eureka\n server.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.fetch-remote-regions-registry",
+      "description": "Comma separated list of regions for which the eureka registry information will be\n fetched. It is mandatory to define the availability zones for each of these regions\n as returned by availabilityZones. Failing to do so, will result in failure of\n discovery client startup.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": true,
+      "name": "eureka.client.filter-only-up-instances",
+      "description": "Indicates whether to get the applications after filtering the applications for\n instances with only InstanceStatus UP states.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": true,
+      "name": "eureka.client.g-zip-content",
+      "description": "Indicates whether the content fetched from eureka server has to be compressed\n whenever it is supported by the server. The registry information from the eureka\n server is compressed for optimum network traffic.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 10,
+      "name": "eureka.client.heartbeat-executor-exponential-back-off-bound",
+      "description": "Heartbeat executor exponential back off related property. It is a maximum\n multiplier value for retry delay, in case where a sequence of timeouts occurred.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 2,
+      "name": "eureka.client.heartbeat-executor-thread-pool-size",
+      "description": "The thread pool size for the heartbeatExecutor to initialise with",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 40,
+      "name": "eureka.client.initial-instance-info-replication-interval-seconds",
+      "description": "Indicates how long initially (in seconds) to replicate instance info to the eureka\n server",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 30,
+      "name": "eureka.client.instance-info-replication-interval-seconds",
+      "description": "Indicates how often(in seconds) to replicate instance changes to be replicated to\n the eureka server.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": false,
+      "name": "eureka.client.log-delta-diff",
+      "description": "Indicates whether to log differences between the eureka server and the eureka\n client in terms of registry information.\n\n Eureka client tries to retrieve only delta changes from eureka server to minimize\n network traffic. After receiving the deltas, eureka client reconciles the\n information from the server to verify it has not missed out some information.\n Reconciliation failures could happen when the client has had network issues\n communicating to server.If the reconciliation fails, eureka client gets the full\n registry information.\n\n While getting the full registry information, the eureka client can log the\n differences between the client and the server and this setting controls that.\n\n The changes are effective at runtime at the next registry fetch cycle as specified\n by registryFetchIntervalSecondsr",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": true,
+      "name": "eureka.client.on-demand-update-status-change",
+      "description": "If set to true, local status updates via ApplicationInfoManager will trigger\n on-demand (but rate limited) register\/updates to remote eureka servers",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": true,
+      "name": "eureka.client.prefer-same-zone-eureka",
+      "description": "Indicates whether or not this instance should try to use the eureka server in the\n same zone for latency and\/or other reason.\n\n Ideally eureka clients are configured to talk to servers in the same zone\n\n The changes are effective at runtime at the next registry fetch cycle as specified\n by registryFetchIntervalSeconds",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.property-resolver",
+      "type": "org.springframework.core.env.PropertyResolver"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.proxy-host",
+      "description": "Gets the proxy host to eureka server if any.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.proxy-password",
+      "description": "Gets the proxy password if any.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.proxy-port",
+      "description": "Gets the proxy port to eureka server if any.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.proxy-user-name",
+      "description": "Gets the proxy user name if any.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": "us-east-1",
+      "name": "eureka.client.region",
+      "description": "Gets the region (used in AWS datacenters) where this instance resides.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": true,
+      "name": "eureka.client.register-with-eureka",
+      "description": "Indicates whether or not this instance should register its information with eureka\n server for discovery by others.\n\n In some cases, you do not want your instances to be discovered whereas you just\n want do discover other instances.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": 30,
+      "name": "eureka.client.registry-fetch-interval-seconds",
+      "description": "Indicates how often(in seconds) to fetch the registry information from the eureka\n server.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.registry-refresh-single-vip-address",
+      "description": "Indicates whether the client is only interested in the registry information for a\n single VIP.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "name": "eureka.client.service-url",
+      "description": "Map of availability zone to list of fully qualified URLs to communicate with eureka\n server. Each value can be a single URL or a comma separated list of alternative\n locations.\n\n Typically the eureka server URLs carry protocol,host,port,context and version\n information if any. Example:\n http:\/\/ec2-256-156-243-129.compute-1.amazonaws.com:7001\/eureka\/\n\n The changes are effective at runtime at the next service url refresh cycle as\n specified by eurekaServiceUrlPollIntervalSeconds.",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": false,
+      "name": "eureka.client.should-enforce-registration-at-init",
+      "description": "Indicates whether the client should enforce registration during initialization. Defaults to false.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": true,
+      "name": "eureka.client.should-unregister-on-shutdown",
+      "description": "Indicates whether the client should explicitly unregister itself from the remote server\n on client shutdown.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaClientConfigBean",
+      "defaultValue": false,
+      "name": "eureka.client.use-dns-for-fetching-service-urls",
+      "description": "Indicates whether the eureka client should use the DNS mechanism to fetch a list of\n eureka servers to talk to. When the DNS name is updated to have additional servers,\n that information is used immediately after the eureka client polls for that\n information as specified in eurekaServiceUrlPollIntervalSeconds.\n\n Alternatively, the service urls can be returned serviceUrls, but the users should\n implement their own mechanism to return the updated list in case of changes.\n\n The changes are effective at runtime.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.a-s-g-name",
+      "description": "Gets the AWS autoscaling group name associated with this instance. This information\n is specifically used in an AWS environment to automatically put an instance out of\n service after the instance is launched and it has been disabled for traffic..",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.app-group-name",
+      "description": "Get the name of the application group to be registered with eureka.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": "unknown",
+      "name": "eureka.instance.appname",
+      "description": "Get the name of the application to be registered with eureka.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.data-center-info",
+      "description": "Returns the data center this instance is deployed. This information is used to get\n some AWS specific instance information if the instance is deployed in AWS.",
+      "type": "com.netflix.appinfo.DataCenterInfo"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": [],
+      "name": "eureka.instance.default-address-resolution-order",
+      "type": "java.lang.String[]"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.environment",
+      "type": "org.springframework.core.env.Environment"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.health-check-url",
+      "description": "Gets the absolute health check page URL for this instance. The users can provide\n the healthCheckUrlPath if the health check page resides in the same instance\n talking to eureka, else in the cases where the instance is a proxy for some other\n server, users can provide the full URL. If the full URL is provided it takes\n precedence.\n\n <p>\n It is normally used for making educated decisions based on the health of the\n instance - for example, it can be used to determine whether to proceed deployments\n to an entire farm or stop the deployments without causing further damage. The full\n URL should follow the format http:\/\/${eureka.hostname}:7001\/ where the value\n ${eureka.hostname} is replaced at runtime.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.health-check-url-path",
+      "description": "Gets the relative health check URL path for this instance. The health check page\n URL is then constructed out of the hostname and the type of communication - secure\n or unsecure as specified in securePort and nonSecurePort.\n\n It is normally used for making educated decisions based on the health of the\n instance - for example, it can be used to determine whether to proceed deployments\n to an entire farm or stop the deployments without causing further damage.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.home-page-url",
+      "description": "Gets the absolute home page URL for this instance. The users can provide the\n homePageUrlPath if the home page resides in the same instance talking to eureka,\n else in the cases where the instance is a proxy for some other server, users can\n provide the full URL. If the full URL is provided it takes precedence.\n\n It is normally used for informational purposes for other services to use it as a\n landing page. The full URL should follow the format http:\/\/${eureka.hostname}:7001\/\n where the value ${eureka.hostname} is replaced at runtime.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": "\/",
+      "name": "eureka.instance.home-page-url-path",
+      "description": "Gets the relative home page URL Path for this instance. The home page URL is then\n constructed out of the hostName and the type of communication - secure or unsecure.\n\n It is normally used for informational purposes for other services to use it as a\n landing page.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.hostname",
+      "description": "The hostname if it can be determined at configuration time (otherwise it will be\n guessed from OS primitives).",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.initial-status",
+      "description": "Initial status to register with rmeote Eureka server.",
+      "type": "com.netflix.appinfo.InstanceInfo$InstanceStatus"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": false,
+      "name": "eureka.instance.instance-enabled-onit",
+      "description": "Indicates whether the instance should be enabled for taking traffic as soon as it\n is registered with eureka. Sometimes the application might need to do some\n pre-processing before it is ready to take traffic.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.instance-id",
+      "description": "Get the unique Id (within the scope of the appName) of this instance to be\n registered with eureka.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.ip-address",
+      "description": "Get the IPAdress of the instance. This information is for academic purposes only as\n the communication from other instances primarily happen using the information\n supplied in {@link #getHostName(boolean)}.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": 90,
+      "name": "eureka.instance.lease-expiration-duration-in-seconds",
+      "description": "Indicates the time in seconds that the eureka server waits since it received the\n last heartbeat before it can remove this instance from its view and there by\n disallowing traffic to this instance.\n\n Setting this value too long could mean that the traffic could be routed to the\n instance even though the instance is not alive. Setting this value too small could\n mean, the instance may be taken out of traffic because of temporary network\n glitches.This value to be set to atleast higher than the value specified in\n leaseRenewalIntervalInSeconds.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": 30,
+      "name": "eureka.instance.lease-renewal-interval-in-seconds",
+      "description": "Indicates how often (in seconds) the eureka client needs to send heartbeats to\n eureka server to indicate that it is still alive. If the heartbeats are not\n received for the period specified in leaseExpirationDurationInSeconds, eureka\n server will remove the instance from its view, there by disallowing traffic to this\n instance.\n\n Note that the instance could still not take traffic if it implements\n HealthCheckCallback and then decides to make itself unavailable.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.metadata-map",
+      "description": "Gets the metadata name\/value pairs associated with this instance. This information\n is sent to eureka server and can be used by other instances.",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": "eureka",
+      "name": "eureka.instance.namespace",
+      "description": "Get the namespace used to find properties. Ignored in Spring Cloud.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": 80,
+      "name": "eureka.instance.non-secure-port",
+      "description": "Get the non-secure port on which the instance should receive traffic.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": true,
+      "name": "eureka.instance.non-secure-port-enabled",
+      "description": "Indicates whether the non-secure port should be enabled for traffic or not.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": false,
+      "name": "eureka.instance.prefer-ip-address",
+      "description": "Flag to say that, when guessing a hostname, the IP address of the server should be\n used in prference to the hostname reported by the OS.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.secure-health-check-url",
+      "description": "Gets the absolute secure health check page URL for this instance. The users can\n provide the secureHealthCheckUrl if the health check page resides in the same\n instance talking to eureka, else in the cases where the instance is a proxy for\n some other server, users can provide the full URL. If the full URL is provided it\n takes precedence.\n\n <p>\n It is normally used for making educated decisions based on the health of the\n instance - for example, it can be used to determine whether to proceed deployments\n to an entire farm or stop the deployments without causing further damage. The full\n URL should follow the format http:\/\/${eureka.hostname}:7001\/ where the value\n ${eureka.hostname} is replaced at runtime.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": 443,
+      "name": "eureka.instance.secure-port",
+      "description": "Get the Secure port on which the instance should receive traffic.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": false,
+      "name": "eureka.instance.secure-port-enabled",
+      "description": "Indicates whether the secure port should be enabled for traffic or not.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": "unknown",
+      "name": "eureka.instance.secure-virtual-host-name",
+      "description": "Gets the secure virtual host name defined for this instance.\n\n This is typically the way other instance would find this instance by using the\n secure virtual host name.Think of this as similar to the fully qualified domain\n name, that the users of your services will need to find this instance.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.status-page-url",
+      "description": "Gets the absolute status page URL path for this instance. The users can provide the\n statusPageUrlPath if the status page resides in the same instance talking to\n eureka, else in the cases where the instance is a proxy for some other server,\n users can provide the full URL. If the full URL is provided it takes precedence.\n\n It is normally used for informational purposes for other services to find about the\n status of this instance. Users can provide a simple HTML indicating what is the\n current status of the instance.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "name": "eureka.instance.status-page-url-path",
+      "description": "Gets the relative status page URL path for this instance. The status page URL is\n then constructed out of the hostName and the type of communication - secure or\n unsecure as specified in securePort and nonSecurePort.\n\n It is normally used for informational purposes for other services to find about the\n status of this instance. Users can provide a simple HTML indicating what is the\n current status of the instance.",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean",
+      "defaultValue": "unknown",
+      "name": "eureka.instance.virtual-host-name",
+      "description": "Gets the virtual host name defined for this instance.\n\n This is typically the way other instance would find this instance by using the\n virtual host name.Think of this as similar to the fully qualified domain name, that\n the users of your services will need to find this instance.",
+      "type": "java.lang.String"
+    }
+  ]
+}

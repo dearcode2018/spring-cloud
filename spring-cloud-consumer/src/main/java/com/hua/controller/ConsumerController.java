@@ -25,7 +25,6 @@ import com.hua.bean.ResultBean;
  */
 @RestController
 @RequestMapping("/consumer")
-//@EnableDiscoveryClient
 public class ConsumerController extends BaseController
 {
 

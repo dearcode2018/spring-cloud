@@ -9,7 +9,7 @@ package com.hua.start;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
  /**
@@ -18,12 +18,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author qianye.zheng
  */
 @SpringBootApplication(scanBasePackages = {"com.hua"})
-@EnableEurekaClient
 @EnableDiscoveryClient
 @EnableFeignClients
+/* 允许容错，标注了之后，@HystrixCommand才能工作 */
+@EnableHystrix
 public class ConsumerStarter
 {
-	
 	
 	/**
 	 * 

@@ -33,8 +33,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import com.hua.bean.ResultBean;
-import com.hua.service.RestService;
-import com.hua.service.SpeakClient;
+import com.hua.service.CallProviderService;
 import com.hua.start.ConsumerStarter;
 import com.hua.test.BaseTest;
 import com.hua.util.JacksonUtil;
@@ -50,22 +49,19 @@ import com.hua.util.JacksonUtil;
 @SpringBootTest(classes = {ConsumerStarter.class}, 
 webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 //@MapperScan(basePackages = {"com.hua.mapper"})
-//@EnableEurekaClient
-//@EnableFeignClients
 public class ConsumerTest extends BaseTest {
 
 	//@Resource
 	//private PersonDao personDao;
 	
 	@Resource
-	private RestService restService;
-	
-	@Resource
 	private RestTemplate restTemplate;
 	
+	//@Resource
+	//private SpeakClient speakClient;
+
 	@Resource
-	private SpeakClient speakClient;
-	
+	private CallProviderService callProviderService;
 	
 	/**
 	 * 
@@ -76,10 +72,21 @@ public class ConsumerTest extends BaseTest {
 	@Test
 	public void testConsumer() {
 		try {
-			//ResultBean resultBean = restTemplate.getForObject("http://127.0.0.1:8080/spring-cloud-provider/speak/say?content=1232", ResultBean.class, "hi,i am a consumer");
 			
 			final Map<String, Object> param = new HashMap<String, Object>();
 			param.put("content", "hi,i am a consumer");
+			/*
+			 * 提供者带项目名启动时，发起调用的路径必须也带上相同的路径
+			 * 否则发生404错误.
+			 * 第一个是服务名(注册到Eureka的 application.name)、第二个是项目名(提供者的context-path)
+			 *
+			 *因为有了服务名，提供者通常都不要再带上项目名来发布了.
+			 */
+			//ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/spring-cloud-provider/speak/say", ResultBean.class, param);
+			
+			/*
+			 * 提供者不带项目名启动，直接拼接服务名+接口路径即可
+			 */
 			ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/speak/say", ResultBean.class, param);
 			
 			System.out.println(JacksonUtil.writeAsString(resultBean));
@@ -95,9 +102,26 @@ public class ConsumerTest extends BaseTest {
 	 * 
 	 */
 	@Test
+	public void testHystrix() {
+		try {
+			ResultBean resultBean = callProviderService.call();
+
+			System.out.println(JacksonUtil.writeAsString(resultBean));
+		} catch (Exception e) {
+			log.error("testHystrix =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	@Test
 	public void testFeignClient() {
 		try {
-			speakClient.say("abc");
+			//speakClient.say("abc");
 			
 		} catch (Exception e) {
 			log.error("testFeignClient =====> ", e);

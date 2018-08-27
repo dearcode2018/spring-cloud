@@ -1,5 +1,5 @@
 /**
-  * @filename ApplicationStarter.java
+  * @filename ZuulStarter.java
   * @description 
   * @version 1.0
   * @author qianye.zheng
@@ -8,14 +8,19 @@ package com.hua.start;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
  /**
- * @type ApplicationStarter
+ * @type ZuulStarter
  * @description 应用启动器
  * @author qianye.zheng
  */
 @SpringBootApplication(scanBasePackages = {"com.hua"})
-public class ApplicationStarter
+//@EnableEurekaClient
+/* 开启Zuul (网关)代理 */
+@EnableZuulProxy
+public class ZuulStarter
 {
 	
 	
@@ -27,7 +32,7 @@ public class ApplicationStarter
 	 */
 	public static void main(String[] args)
 	{
-		SpringApplication.run(ApplicationStarter.class, args);
+		SpringApplication.run(ZuulStarter.class, args);
 	}
 	
 	

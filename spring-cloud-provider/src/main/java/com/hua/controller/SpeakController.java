@@ -19,7 +19,6 @@ import com.hua.bean.ResultBean;
  */
 @RestController
 @RequestMapping("/speak")
-//@EnableDiscoveryClient
 public class SpeakController extends BaseController
 {
 	
