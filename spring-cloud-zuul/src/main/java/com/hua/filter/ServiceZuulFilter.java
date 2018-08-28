@@ -47,9 +47,9 @@ public class ServiceZuulFilter extends ZuulFilter
 		System.out.println("ServiceZuulFilter.run()");
 		 // 业务逻辑
 		RequestContext requestContext = RequestContext.getCurrentContext();
-		requestContext.setResponseStatusCode(404);
+		//requestContext.setResponseStatusCode(404);
 		
-		return null;
+		return requestContext;
 	}
 
 	/**
@@ -60,7 +60,14 @@ public class ServiceZuulFilter extends ZuulFilter
 	@Override
 	public String filterType()
 	{
-		return null;
+		// 不能返回null，否则抛空指针异常
+		/*
+		 * "pre" for pre-routing filtering,
+		 * "route" for routing to an origin, "post" for post-routing filters, "error" for error handling.
+		 * We also support a "static" type for static responses see  StaticResponseFilter.
+		 */
+		
+		return "pre";
 	}
 
 	/**

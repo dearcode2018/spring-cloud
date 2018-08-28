@@ -1,11 +1,24 @@
 
 
-1
-配置好之后，启动zuul，然后在外面例如浏览器中具体去调用接口，
+
+
+构建示例
+1) 配置
+# zuul for special service
+zuul.routes.spring-cloud-provider.path=/spring-cloud-provider/**
+# path --> service
+zuul.routes.spring-cloud-provider.serviceId=spring-cloud-provider
+启动zuul，然后在外面例如浏览器中具体去调用接口，
 就回被zuul拦截到，就表示成功了，而不是通过SpringCloud的消费者去调用.
 # 3030 是 zuul项目的端口
-http://127.0.0.1:3030/provider/speak/say
-
+/* 注意，提供者是没有带项目名启动的，这里的spring-cloud-provider是服务id，
+匹配路径: zuul.routes.spring-cloud-provider.path=/spring-cloud-provider/**
+zuul代理到指定服务的时候，也是类似通过eureka带服务ID去调用，例如:
+http://spring-cloud-provider/provider/speak/say
+所以zuul要配置拦截的时候，直接配置要拦截的服务ID作为path即可.
+例如: /serviceId/**，表示拦截serviceId下的所有服务
+ */
+http://127.0.0.1:3030/spring-cloud-provider/provider/speak/say
 
 
 
