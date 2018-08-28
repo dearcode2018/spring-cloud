@@ -16,7 +16,6 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  * @author qianye.zheng
  */
 @SpringBootApplication(scanBasePackages = {"com.hua"})
-//@EnableEurekaClient
 /* 开启Zuul (网关)代理 */
 @EnableZuulProxy
 public class ZuulStarter
