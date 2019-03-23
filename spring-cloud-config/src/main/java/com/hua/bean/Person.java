@@ -9,7 +9,7 @@ package com.hua.bean;
 
 import java.sql.Timestamp;
 
-import com.hua.constant.sys.UserType;
+import com.hua.constant.ext.UserType;
 
 /**
  * 描述: 

@@ -1,0 +1,32 @@
+# application.yaml
+# server settings
+server:
+  port: 8080
+  address: 127.0.0.1
+  sessionTimeout: 60
+  contextPath: /spring-boot
+  
+
+# tomcat specifics  
+  tomcat:
+    accessLogEnabled: false
+    protocolHeader: x-forwarded-proto
+    remoteIpHeader: x-forwarded-for
+    basedir:
+    backgroundProcessorDelay: 30 # seconds
+
+  connection:
+    username: admin
+    remoteAddress: 127.0.0.1
+
+
+
+
+
+
+
+
+
+
+
+

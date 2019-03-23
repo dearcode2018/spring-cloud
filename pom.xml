@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<!-- spring boot的版本要和 spring cloud的版本对应起来，高版本则不支持 -->
-		<version>2.0.1.RELEASE</version>
+		<version>2.1.3.RELEASE</version>
 	</parent>    
   
   <groupId>com.hua</groupId>
@@ -29,14 +29,9 @@
 		<module>spring-cloud-zuul</module>		
 		<module>spring-cloud-provider</module>		
 		<module>spring-cloud-consumer</module>		
-		<!--
-		<module></module>		
-		<module></module>		
-		<module></module>		
-		<module></module>		
-		<module></module>		
-		<module></module>	
-		-->
+		<module>spring-cloud-cluster</module>
+		<module>spring-cloud-gateway</module>
+		<module>spring-cloud-task</module>
 	</modules>
  
 	<!-- 公共属性 -->
@@ -53,7 +48,7 @@
 		<maven.plugin.war.version>3.0</maven.plugin.war.version>
 		<spring.cloud.core.version>0.0.1</spring.cloud.core.version>
 		<web.version>0.0.1</web.version>
-		<spring-cloud.version>Finchley.RC2</spring-cloud.version>
+		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
 	</properties>  
   
   
