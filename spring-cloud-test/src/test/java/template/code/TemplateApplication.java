@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * ConsumerTest.java
+ * TemplateApplication.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.test.boot;
+package template.code;
 
 // 静态导入
 import static org.junit.Assert.assertArrayEquals;
@@ -20,112 +20,49 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.hua.ApplicationStarter;
-import com.hua.bean.ResultBean;
-import com.hua.service.CallProviderService;
 import com.hua.test.BaseTest;
-import com.hua.util.JacksonUtil;
 
 
 /**
  * 描述: 
  * 
  * @author qye.zheng
- * ConsumerTest
+ * TemplateApplication
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ApplicationStarter.class}, 
-webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-//@MapperScan(basePackages = {"com.hua.mapper"})
-public class ConsumerTest extends BaseTest {
+// spring boot 应用
+/*
+* 注意，@SpringBootApplication(scanBasePackages = {"com.hua.controller.*"})
+* 这样配置是错误的，scanBasePackages后面加.*是错误，填写基本包结构即可
+* "com.hua.controller 或 com.hua，无需做任何匹配.
+* 
+* 通过main方法来运行驱动程序的运行，如果需要实现动态修改代码的方式
+* 则直接打开 main方法的debug模式来运行
+*即 Debug As... 而不仅仅是 Run As ...
+* 
+*/
+@SpringBootApplication(scanBasePackages = {"com.hua"})
+// 类不能声明为final
+public class TemplateApplication extends BaseTest {
 
-	//@Resource
-	//private PersonDao personDao;
 	
-	@Resource
-	private RestTemplate restTemplate;
-	
-	//@Resource
-	//private SpeakClient speakClient;
-
-	@Resource
-	private CallProviderService callProviderService;
+	/*
+	 * 可以用Debug As ... 模式来运行main方法，实现动态部署的效果.
+	 */
 	
 	/**
 	 * 
-	 * 描述: 
-	 * @author qye.zheng
-	 * 
+	 * @description 
+	 * @param args
+	 * @author qianye.zheng
 	 */
-	@Test
-	public void testConsumer() {
-		try {
-			
-			final Map<String, Object> param = new HashMap<String, Object>();
-			param.put("content", "hi,i am a consumer");
-			/*
-			 * 提供者带项目名启动时，发起调用的路径必须也带上相同的路径
-			 * 否则发生404错误.
-			 * 第一个是服务名(注册到Eureka的 application.name)、第二个是项目名(提供者的context-path)
-			 *
-			 *因为有了服务名，提供者通常都不要再带上项目名来发布了.
-			 */
-			//ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/spring-cloud-provider/speak/say", ResultBean.class, param);
-			
-			/*
-			 * 提供者不带项目名启动，直接拼接服务名+接口路径即可
-			 */
-			ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/speak/say", ResultBean.class, param);
-			
-			System.out.println(JacksonUtil.writeAsString(resultBean));
-		} catch (Exception e) {
-			log.error("testConsumer =====> ", e);
-		}
-	}
-	
-	/**
-	 * 
-	 * 描述: 
-	 * @author qye.zheng
-	 * 
-	 */
-	@Test
-	public void testHystrix() {
-		try {
-			ResultBean resultBean = callProviderService.call();
-
-			System.out.println(JacksonUtil.writeAsString(resultBean));
-		} catch (Exception e) {
-			log.error("testHystrix =====> ", e);
-		}
-	}
-	
-	/**
-	 * 
-	 * 描述: 
-	 * @author qye.zheng
-	 * 
-	 */
-	@Test
-	public void testFeignClient() {
-		try {
-			//speakClient.say("abc");
-			
-		} catch (Exception e) {
-			log.error("testFeignClient =====> ", e);
-		}
+	public static void main(String[] args)
+	{
+		SpringApplication.run(TemplateApplication.class, args);
 	}
 	
 	/**

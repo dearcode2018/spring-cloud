@@ -1,18 +1,34 @@
 
 server:
-  port: 7070
+  port: 6868
  
   servlet:
-    context-path: /
+    context-path: /spring-cloud-eureka
  
 spring:
   profiles:
     active:
     - dev
-
+  application:
+    name: spring-cloud-eureka
   autoconfigure:
     exclude:
     - 
+
+eureka:
+  client:
+   # 自身不注册
+    register-with-eureka: false
+    fetch-registry: false
+
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    ip-address: 127.0.0.1
+  server:
+    enable-self-preservation: false
+    # 回收时间间隔
+    eviction-interval-timer-in-ms: 6000
+    
 
   http:
     log-request-details: true
@@ -24,7 +40,7 @@ spring:
       additional-paths:
       - src/main/java
 
-
+   
 
 
 

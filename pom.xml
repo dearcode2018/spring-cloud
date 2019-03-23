@@ -32,6 +32,7 @@
 		<module>spring-cloud-cluster</module>
 		<module>spring-cloud-gateway</module>
 		<module>spring-cloud-task</module>
+		<module>spring-cloud-test</module>
 	</modules>
  
 	<!-- 公共属性 -->

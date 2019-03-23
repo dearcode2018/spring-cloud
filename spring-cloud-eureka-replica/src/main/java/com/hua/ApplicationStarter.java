@@ -8,6 +8,8 @@ package com.hua;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.annotation.ImportResource;
 
  /**
@@ -21,6 +23,9 @@ import org.springframework.context.annotation.ImportResource;
 //@SpringBootApplication(scanBasePackages = {"com.hua"})
 /* 该类在根包(basePackage)下，则无须再指定scanBasePackages */
 @SpringBootApplication
+//声明一个Eureka服务
+@EnableEurekaServer
+@EnableDiscoveryClient
 /* 启动指定特性 */
 //@Configuration
 //@EnableAutoConfiguration
@@ -41,6 +46,11 @@ public class ApplicationStarter
 	 */
 	public static void main(String[] args)
 	{
+		
+		//args = new String[] {"spring-boot:run Dport=6868 Deureka.server=http://localhost:6868/eureka"};
+		//args = new String[] {"spring-boot:run", "-Dport=6868", "-Deureka.server=http://localhost:6868/eureka"};
+		//args = new String[] {"spring-boot:run", "-Dport=6869", "-Deureka.server=http://localhost:6869/eureka"};
+
 		SpringApplication.run(ApplicationStarter.class, args);
 	}
 	

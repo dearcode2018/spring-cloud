@@ -7,12 +7,12 @@
 		<artifactId>spring-cloud-entire</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>spring-cloud-core</artifactId>
-	<name>spring-cloud-core</name>
+	<artifactId>spring-cloud-test</artifactId>
+	<name>spring-cloud-test</name>
 	<packaging>jar</packaging>
 	
 	<properties>
-		<common.version>0.0.1</common.version>
+	
 	</properties>
 
 	<!-- 使用spring boot 构建插件 运行: mvn spring-boot:run -->
@@ -29,10 +29,16 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>common</artifactId>
-			<version>${common.version}</version>
+			<artifactId>spring-cloud-core</artifactId>
+			<version>${spring.cloud.core.version}</version>
 		</dependency>		
 	
+<!-- 		<dependency>
+			<groupId>com.hua</groupId>
+			<artifactId>web</artifactId>
+			<version>${web.version}</version>
+		</dependency> -->
+		
 		<!-- spring boot starter web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -57,17 +63,6 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>	 -->
-	
-<!-- 		<dependency>
-		    <groupId>com.netflix.archaius</groupId>
-		    <artifactId>archaius-core</artifactId>
-		    <version>${netflix.archaius.version}</version>
-		</dependency>	 -->
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
 		
 	</dependencies>
 

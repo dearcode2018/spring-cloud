@@ -8,6 +8,9 @@ package com.hua;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ImportResource;
 
  /**
@@ -21,6 +24,10 @@ import org.springframework.context.annotation.ImportResource;
 //@SpringBootApplication(scanBasePackages = {"com.hua"})
 /* 该类在根包(basePackage)下，则无须再指定scanBasePackages */
 @SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+/* 允许容错，标注了之后，@HystrixCommand才能工作 */
+@EnableHystrix
 /* 启动指定特性 */
 //@Configuration
 //@EnableAutoConfiguration
