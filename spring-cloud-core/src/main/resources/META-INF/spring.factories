@@ -1,4 +1,7 @@
 
+# spring.factories Spring工厂bean声明文件，在所有jar均会执行，key重名则后覆盖前
+# 
+
 # 
 org.springframework.cloud.bootstrap.BootstrapConfiguration=\
 com.hua.bootstrap.CustomPropertySourceLocator
@@ -6,9 +9,6 @@ com.hua.bootstrap.CustomPropertySourceLocator
 
 org.springframework.cloud.client.discovery.EnableDiscoveryClient=
 
-# 解决配置(Cloud Config)中文乱码问题，在Cloud Config Server 中执行
-org.springframework.boot.env.PropertySourceLoader=\
-com.hua.config.DefaultPropertySourceLoader
 
 
 

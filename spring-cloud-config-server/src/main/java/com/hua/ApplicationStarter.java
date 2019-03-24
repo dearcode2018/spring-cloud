@@ -9,6 +9,7 @@ package com.hua;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.ConfigServerApplication;
+import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.context.annotation.ImportResource;
 
  /**
@@ -22,6 +23,8 @@ import org.springframework.context.annotation.ImportResource;
 //@SpringBootApplication(scanBasePackages = {"com.hua"})
 /* 该类在根包(basePackage)下，则无须再指定scanBasePackages */
 @SpringBootApplication
+// 启动 Cloud Config Server
+@EnableConfigServer
 /* 启动指定特性 */
 //@Configuration
 //@EnableAutoConfiguration
@@ -42,8 +45,9 @@ public class ApplicationStarter
 	 */
 	public static void main(String[] args)
 	{
-		ConfigServerApplication.main(args);
-		//SpringApplication.run(ApplicationStarter.class, args);
+		// @EnableConfigServer 注解替代该代码
+		//ConfigServerApplication.main(args);
+		SpringApplication.run(ApplicationStarter.class, args);
 	}
 	
 	

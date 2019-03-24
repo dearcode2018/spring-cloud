@@ -1,31 +1,123 @@
 
 server:
-  port: 7070
- 
+  port: 1010
+  # tomcat
+  tomcat:
+    uri-encoding: UTF-8
+     
   servlet:
-    context-path: /
- 
+    context-path: /spring-cloud-config-server
+
+# 加密解密
+#encrypt:
+#  key: mykey
+#  key-store:
+#    location: classpath:/server.jsk
+#    password: changeme
+#    alias: mytestkey
+#    secret: changme
+    
 spring:
   profiles:
     active: dev
-    
-  application:
-    name: 
+  application: 
+    name: spring-cloud-config-server
   autoconfigure:
     exclude:
     - 
   
   cloud:
     config:
+      # 远程默认配置名称
+      name: 
       server:
         # 配置源地址 git
         git:
-          uri: https://github.com/spring-cloud-samples/config-repo
-
-
-  http:
+          # 跳过SSL验证
+          skip-ssl-validation: true
+          clone-on-start: true
+          #  本地配置库: 从远程下载到本地
+          # 本地配置库(Windows): uri: file:///$USER_HOME/config-repo
+          # 本地配置(Linux)库: uri: file://$USER_HOME/config-repo
+          # 超时时间，单位 秒
+          #timeout: 10
+          
+          # 帐号密码方式 #
+          #uri: http://127.0.0.1/xx/config-repo.git
+          #username: zhangsan
+          #password: 123456
+          
+          # SSH 方式 #
+          #uri: git@127.0.0.1:xx/config-repo.git
+          host-key-algorithm: ssh-rsa
+          # 忽略本基于地文件的SSH配置，通过属性配置
+          ignore-local-ssh-settings: true
+          # git仓库主机
+          # SSH主机密钥
+#          host-key: AAAAB3NzaC1yc2EAAAADAQABAAACAQCuzTcqWHW0o3X5QHxdH/aL72sQAQ8iZTJz52QMYx1OUeJWNYvT+HgL3tm0YBItkd4FUo+dxQ84/aaQIS02zt7B52g/2PWWXXKTzhDepTFWXTkFxFyy2GkAkB0N29BDJO/lfaiPO3DpULuxEFGBzwLkFpe1LKz5pX2DARXVAyNH6iTbf5W0Jgx5PdZRa/zCk6MZ6CTETM8/1m3Sqv58j4/6As5nNzXsTrJxT95bkQ9WbyFg5GmuI8ZVjraCn460WjIe4AnQEv66JPl84fcKHjtUSvffpIqXV0Cnvan7ocPsnWRaLmgsxOHE/D8nmVjAbzUrzfCxWN09aRinaHqGO4QqG3OyfiM/tPn61h6JotWgNbwJfnnGUr9OyZQJZWUElqASMIwMIRlZ4y0B2AQSpjXPPk+tT4NN2/IMunUf0FndOg+2WvJhhAgZ+DmJyXKCoSn7CGj5SiNFyxfWitr0dUzo5YMDzdBc43SAro/pMLp7CzAbizjOKsbibPM0l1reD0j4MV6Mw5lUua3p0PP/52F9NaZWLJU2Gdj1Uv0J8E5rYLRI43h33UPeEU3yOFRHnPSNkBpuNB8N27c/n6a/QTxCNtrOYNM3zpgyuNtX8GXfHPbgbPr/XQIFhhWDt7Hg9EEtEPUgXeWQ7RJPksc3hxcjK7P+xeZARSsRb0MQBEe4Zw==
+            # SSH私钥 (key值第一行 为| )
+#          private-key: |
+#                            -----BEGIN RSA PRIVATE KEY-----
+#                            MIIJKQIBAAKCAgEArs03Klh1tKN1+UB8XR/2i+9rEAEPImUyc+dkDGMdTlHiVjWL
+#                            0/h4C97ZtGASLZHeBVKPncUPOP2mkCEtNs7ewedoP9j1ll1yk84Q3qUxVl05BcRc
+#                            sthpAJAdDdvQQyTv5X2ojztw6VC7sRBRgc8C5BaXtSys+aV9gwEV1QMjR+ok23+V
+#                            tCYMeT3WUWv8wpOjGegkxEzPP9Zt0qr+fI+P+gLOZzc17E6ycU/eW5EPVm8hYORp
+#                            riPGVY62gp+OtFoyHuAJ0BL+uiT5fOH3Ch47VEr336SKl1dAp72p+6HD7J1kWi5o
+#                            LMThxPw/J5lYwG81K83wsVjdPWkYp2h6hjuEKhtzsn4jP7T5+tYeiaLVoDW8CX55
+#                            xlK/TsmUCWVlBJagEjCMDCEZWeMtAdgEEqY1zz5PrU+DTdvyDLp1H9BZ3ToPtlry
+#                            YYQIGfg5iclygqEp+who+UojRcsX1ora9HVM6OWDA83QXON0gK6P6TC6ewswG4s4
+#                            zirG4mzzNJda3g9I+DFejMOZVLmt6dDz/+dhfTWmViyVNhnY9VL9CfBOa2C0SON4
+#                            d91D3hFN8jhUR5z0jZAabjQfDdu3P5+mv0E8QjbazmDTN86YMrjbV/Bl3xz24Gz6
+#                            /10CBYYVg7ex4PRBLRD1IF3lkO0ST5LHN4cXIyuz/sXmQEUrEW9DEARHuGcCAwEA
+#                            AQKCAgAVz1MPvIPLKw4AMHST5fYMFa5FC+zIfNnjrj5EcWVprTvRR9MPepP33zFI
+#                            mSgLeYS7I0b6B2lT0gojN5B9oygWB3pxZO+XeEdge7iNHw1d2jnQJ2Tth6TqRhDp
+#                            9sAwcH5iIuCSJnd7FPCmMgQJbzvMG6mIGG/ooiZb3xnLPx36zhMVNAEIviqWQgno
+#                            lNGvsV4LUHSt7Wt6apW/UEh6YCs1pX39UN0wg80t6Co1QI8qWKlQfo9VA++uIyVQ
+#                            fPoANLTGN2viA0y3Cv/5/fOl1onOhaARzmTgZymRBFAeLlvUvPqVae7jjxkgS9zR
+#                            Ywe40udOdN6QMidAj0ldMeL/tpNRvNlF9BitrlMZDHQtqyvkmRFAVCp0n78ei+Xu
+#                            bYSCqvIfBVn2JtVhEMyB4qOYyYOknqSMcMWpiS88ba8jtbSrM6+r5EbfiJvgrlfu
+#                            EtRbP9wM4Jou2LuGT7G9brXtou0HhUxHwNLwSD1PcoYkwVlxEhjpSPIPU/Ckq70o
+#                            hmashpHm6POjs+MAomqqwY/q6r2/7k2x21GlaHvusmVDDUCNoOq3j9ANly8cNLGM
+#                            tZbvr2RyvwzW0kafdXugYJ3ekryTVt1GWO3/x+ND6aevxupNJxQasMlksQevCILg
+#                            Em5dO7h4vASaakxw9MSLCYdbJsk8LTOf1PVGXMqwZ8T9dhPFsQKCAQEA10WBhYy1
+#                            c5NhSNeHX7ypPo55LXx1lpc6ouMXBgWg2l/NV7vrBqHxfc0rw9Gw1hHBAhb3Se5e
+#                            g7wacms+V8YJLWuWTlcmSezJqAW8RyY/QFeJsEdaZchtwqEKlXCCRPw5IkcTHyZX
+#                            MID6V5rAddfcTr1l86OwqZ1qwnopY+iqckmYTURCIwdhAjOQz0+Bo3smV/dMPDjt
+#                            N02N/EWY9xyR9jfjP5eNLfyp4Y8Ej0Ad90MF2gqxuqS/AJK1wtYho/zBvBVQVal2
+#                            TVtrsm9cEPFMfrO+T0PxCM5bC5P/WmPYo3Rc9NOtneOpteIsQ0Y1a2iOQ9SSyuiN
+#                            ER1Pr4ZCUB5FzwKCAQEAz9+VtNm7iHmvgyhy9R/sEmOGcQYOg3+S0e1kGRbwSnyh
+#                            aGuV8uCag3FY0E6zraBvd4MoQI/CdGT7bPalTZyo7ZaVE+CFOO95cbaffqcdVUKg
+#                            CMvzJIXz48UvsI9IrgZJUJfLVFIjp5Fy3yhGdOA6QQkA/BF1mnWOchf7l6eVOMz8
+#                            bqbXRkn90NvVUhTPFILK051QWUFueyAzo9vuf+wptFxCv0jYLLRkP9huZE7C6ujo
+#                            j3j20+kk7qT/Md6Cm72a+60A3to2iQAMJ3atbd6z0smzCoVjOJu6wJMX8AdR2pfD
+#                            mlnpwJNRV0Mty9glgyP8PNDU33/1srC0jeJFa72h6QKCAQEAyP1PSeavP8KZ8U2y
+#                            SlO2XP7e6vYqP7jg+VY3l9rHbTxHV6PPcvjepUtbklAE4EnhP9c7eZ6CRlLpCm1Q
+#                            3ti6ltq9klVSHXFkcmkweeme4q8Ykip8n018FV0QqahLKKepnHRpyQqeG15A3mxR
+#                            R3WMb0PsnYb2mdas5/jxDiQch+potbOGYHgyPcDxcm3UJ1QC39y4I/4ulRTm/WPp
+#                            xsa5DP7vQN955DbkUgGbCzidAdBk9UhI2m+ZGarg45HUBO0n4TixMdmv59f0fLv2
+#                            ZKc2eZHOnOldcZBhdzTuFHHmwe4SIFBG6IS4XmZWV1WE6MzND0245JQtqY4JaWNc
+#                            JLuvBwKCAQBQFgLWX0BZ7w/Ihy/q8naACyoDp2K2FNNa34u+AtFm0SdaVIC7xv6g
+#                            f23JK1kcHoBzWeuLHBe9wh3/t/KtuRp4FpiuxMRu0AxI3CQMppOtgnKnkPPG8Xiq
+#                            GxEpg7prmW5rh1/Fx7OG3omUIi8q3ixzW+WuN4fIj1vm5wh+QAlEjez/MHYl1WHd
+#                            MqS3795sN4uvBZ+sE4JeG2Tpz1TOogzbOORaT9VBO+qXkmnNaW69FChtBhyKPfuF
+#                            mbnb268UE3N/XQLF2OpD0+na1mUwvCkpn53EAuncKFtF0CXbyuYlQm0QrW1aTSd8
+#                            aBxfuZGSOa33PDmXNfRR+LRHKZK3VKLpAoIBAQCxfDNFnI4k8iP8pkcaPdFdGOZk
+#                            ywGeE4vzb1MhrKAvAKdLqhSBZbH8dyxQaDsq2AXBoz4Mqvlb/yhloqptqPtrgCn8
+#                            ZzEtrOlKLk9DHbvkC0pjRPAG2DYrEosRbHQ8/muihLtgepuiqvWPiOJtFOSSYz2N
+#                            OH5lnpMBNfi19FWcnJmwvuvTWzTc3pcOMqlseKdpKOeHVtWTXO61eML3BV4ubvkE
+#                            QVzpcHX3VolQAgY8jhgexsihX/0CEAODGb2z+V0ypd+y1YfkmML0J0xsw/sxQIHb
+#                            epYPRnhj1coZ1hQBUF4TAUd36i81d3PibTjEQ8Xdzf20/lKdCsda8ZqGblWQ
+#                            -----END RSA PRIVATE KEY-----
+#          
+  http: 
     log-request-details: true
-
+    encoding:
+      force: true
+      force-response: true
+      force-request: true
+      charset: UTF-8
+      
+      
 # spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
   devtools:
     restart:

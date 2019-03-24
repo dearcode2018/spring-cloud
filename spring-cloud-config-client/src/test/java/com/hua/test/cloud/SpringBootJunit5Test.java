@@ -1,6 +1,6 @@
 /**
  * 描述: 
- * SprigCloudTest.java
+ * SpringBootJunit5Test.java
  * 
  * @author qye.zheng
  *  version 1.0
@@ -36,7 +36,7 @@ import com.hua.test.BaseTest;
  * 描述: 
  * 
  * @author qye.zheng
- * SprigCloudTest
+ * SpringBootJunit5Test
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
@@ -47,7 +47,7 @@ import com.hua.test.BaseTest;
 @SpringBootTest(classes = {ApplicationStarter.class}, 
 webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 //@MapperScan(basePackages = {"com.hua.mapper"})
-public final class SprigCloudTest extends BaseTest {
+public final class SpringBootJunit5Test extends BaseTest {
 
 	
 	/*

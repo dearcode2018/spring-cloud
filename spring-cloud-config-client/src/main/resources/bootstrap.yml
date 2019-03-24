@@ -1,0 +1,38 @@
+
+
+spring: 
+  cloud: 
+    config: 
+      # spring.application.name
+      #name: spring-cloud-config-client
+      # 配置中心服务，配置中心(Cloud Config Server)也是一个服务
+      uri: http://127.0.0.1:1010/spring-cloud-config-server
+      # 引用 application.yml 定义的值
+      profile: ${spring.profiles.active}
+      # 默认为master
+      #label: master
+      #enabled: true
+      #allow-override: true
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

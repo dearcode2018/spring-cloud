@@ -1,0 +1,35 @@
+
+
+
+1.启动ConfigServer
+运行 spring-cloud-config-server ApplicationStarter
+访问:
+http://127.0.0.1:1010/spring-cloud-config-server/spring-cloud-config-client/dev
+可以获取指定${application}/${profile}的配置信息
+
+缓存目录(Windows)
+C:\Users\admin\AppData\Local\Temp\xx-repo\
+示例: 
+C:\Users\admin\AppData\Local\Temp\config-repo-xx\spring-cloud-config-client-dev.properties
+# 获取指定应用profile的配置
+http://127.0.0.1:1010/spring-cloud-config-server/spring-cloud-config-client/dev
+
+中文乱码问题
+原因: org.springframework.boot.env.PropertiesPropertySourceLoader底层使用Properties
+的load方法的输入流默认编码是ISO8859-1
+解决方法: 声明一个实现PropertySourceLoader，XXPropertySourceLoader在META-INF/
+spring.factories 文件中补充
+org.springframework.boot.env.PropertySourceLoader
+
+
+
+# 加密解密问题
+1) config-server 引入 security-rsa依赖
+2) 获取密文
+加密: curl -X POST http://127.0.0.1:1010/spring-cloud-config-server/encrypt -d test_123456
+/decrypt是解密
+3) 填写到远端配置文件(git仓库)，注意{cipher}为前缀，无需引号包围
+some.password={cipher}7d2976c7fb18a91b3193d7dfd3660edd07c7901fecd4bbf89f064a73d23bb1fa
+4) 在客户端通过 	@Value("${some.password}") 即可显示明文，因为在config-server
+已经作为解密处理
+

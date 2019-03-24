@@ -1,6 +1,8 @@
 
 # 
-org.springframework.cloud.bootstrap.BootstrapConfiguration=com.hua.bootstrap.CustomPropertySourceLocator
+org.springframework.cloud.bootstrap.BootstrapConfiguration=\
+com.hua.bootstrap.CustomPropertySourceLocator
+
 
 org.springframework.cloud.client.discovery.EnableDiscoveryClient=
 
