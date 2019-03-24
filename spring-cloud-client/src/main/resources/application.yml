@@ -1,0 +1,55 @@
+
+server:
+  port: 7070
+ 
+  servlet:
+    context-path: /
+ 
+spring:
+  profiles:
+    active: dev
+    
+  application:
+    name: 
+  autoconfigure:
+    exclude:
+    - 
+
+  cloud: 
+    inetutils:
+      # 忽略指定的网络接口
+      ignored-interfaces:
+      - docker0
+      - veth.*
+      # 仅使用指定网络
+      preferred-networks:
+      - 192.168
+      - 10.
+      # 是否仅使用本站点地址
+      use-only-site-local-interfaces: false
+     # 
+    httpclientfactories: 
+      # 允许实例化apache http client
+      apache: 
+        enabled: true
+  http:
+    log-request-details: true
+
+# spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths:
+      - src/main/java
+
+
+
+
+
+
+
+
+
+
+
+

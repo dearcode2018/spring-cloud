@@ -20,8 +20,11 @@
 	<modules>
 		<!-- 模板 -->
 		<module>spring-cloud-template</module>		
-		<module>spring-cloud-core</module>			
-		<module>spring-cloud-config</module>		
+		<module>spring-cloud-core</module>	
+		<module>spring-cloud-client</module>		
+		<module>spring-cloud-config</module>	
+		<module>spring-cloud-config-client</module>
+		<module>spring-cloud-config-server</module>	
 		<module>spring-cloud-eureka</module>
 		<module>spring-cloud-eureka-replica</module>
 		<module>spring-cloud-hystrix</module>		
@@ -33,6 +36,7 @@
 		<module>spring-cloud-gateway</module>
 		<module>spring-cloud-task</module>
 		<module>spring-cloud-test</module>
+		<module>spring-cloud-security</module>
 	</modules>
  
 	<!-- 公共属性 -->
@@ -49,7 +53,7 @@
 		<maven.plugin.war.version>3.0</maven.plugin.war.version>
 		<spring.cloud.core.version>0.0.1</spring.cloud.core.version>
 		<web.version>0.0.1</web.version>
-		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
 	</properties>  
   
   
@@ -151,15 +155,7 @@
 		</plugins>
 	</build>
 	
-	<!--  -->
- 	<dependencies>
-	<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter</artifactId>
-		</dependency>
-		
-	</dependencies>
-	
+
 <repositories>
     <repository>
         <id>spring-milestones</id>

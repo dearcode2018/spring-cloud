@@ -14,6 +14,15 @@ spring:
     exclude:
     - 
 
+  cloud:
+    loadbalancer:
+      retry:
+        # 负载均衡重试
+        enabled: true
+    # 兼容性检查，通常在架构初期打开，后面关闭
+    compatibility-verifier:
+      enabled: true
+      
   http:
     log-request-details: true
 
@@ -23,6 +32,8 @@ spring:
       enabled: true
       additional-paths:
       - src/main/java
+  aop:
+    proxy-target-class: true
 
 
 

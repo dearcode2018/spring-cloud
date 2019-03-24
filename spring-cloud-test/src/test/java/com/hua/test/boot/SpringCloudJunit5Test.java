@@ -27,6 +27,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import com.hua.ApplicationStarter;
 import com.hua.test.BaseTest;
@@ -99,7 +100,7 @@ public final class SpringCloudJunit5Test extends BaseTest {
 	@Test
 	public void test() {
 		try {
-			
+			EnableDiscoveryClient c = null;
 			
 		} catch (Exception e) {
 			log.error("test =====> ", e);

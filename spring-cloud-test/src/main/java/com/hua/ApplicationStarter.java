@@ -25,7 +25,8 @@ import org.springframework.context.annotation.ImportResource;
 //@Configuration
 //@EnableAutoConfiguration
 //@ComponentScan
-//@EnableDiscoveryClient
+//不注册 autoRegister=false
+//@EnableDiscoveryClient(autoRegister = false)
 //@EnableCircuitBreaker
 //@EnableHystrixDashboard //
 //@EntityScan

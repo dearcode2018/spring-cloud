@@ -6,6 +6,12 @@
  */
 package com.hua.bean;
 
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.hua.entity.User;
+
 import lombok.Data;
 
 /**
@@ -14,6 +20,9 @@ import lombok.Data;
  * @author qianye.zheng
  */
 @Data
+@RefreshScope
+@Configuration
+//@Component
 public class RefreshBean
 {
 	
@@ -25,5 +34,29 @@ public class RefreshBean
 	 */
 	public RefreshBean()
 	{
+		System.out.println("RefreshBean.RefreshBean()");
 	}
+	
+	{
+		
+		System.out.println("RefreshBean.enclosing_method()");
+		
+	}
+	
+	/**
+	 * 
+	 * @description 
+	 * @return
+	 * @author qianye.zheng
+	 */
+	@Bean
+	//@RefreshScope
+	public User user()
+	{
+		User user = new User();
+		System.out.println("RefreshBean.user()");
+		
+		return user;
+	}
+	
 }

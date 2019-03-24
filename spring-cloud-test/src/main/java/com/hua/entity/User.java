@@ -9,6 +9,8 @@ package com.hua.entity;
 
 import java.sql.Timestamp;
 
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+
 import com.hua.bean.BaseBean;
 
 /**
@@ -17,7 +19,8 @@ import com.hua.bean.BaseBean;
  * @author qye.zheng
  * User
  */
-public final class User extends BaseBean {
+@RefreshScope
+public class User extends BaseBean {
 
 	 /* long */
 	private static final long serialVersionUID = 1L;

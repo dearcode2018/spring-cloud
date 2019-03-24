@@ -3,7 +3,7 @@ server:
   port: 7070
  
   servlet:
-    context-path: /
+    context-path: /spring-cloud-test
 
 spring:
   profiles:
@@ -22,6 +22,20 @@ spring:
       override-none: true
       # 系统属性(系统属性，命令行参数和环境变量)不能被远程覆盖
       override-system-properties: false
+    # 服务自动注册
+    service-registry:
+      auto-registration:
+        enabled: true
+        
+    discovery:
+      client:
+        composite-indicator:
+          enabled: false
+      # 禁用复合健康检查
+        health-indicator:
+          enabled: false
+          # 检查描述
+          include-description: false
   http:
     log-request-details: true
 
@@ -33,7 +47,14 @@ spring:
       - src/main/java
 
 
-
+# actuator
+management:
+  endpoints: 
+    web:
+      # 暴露的地址 
+      exposure:
+        include: refresh,env,restart,start,stop,pause,resume
+   
 
 
 
