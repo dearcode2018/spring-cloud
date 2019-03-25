@@ -1,0 +1,65 @@
+
+server:
+  port: 1010
+  # tomcat
+  tomcat:
+    uri-encoding: UTF-8
+     
+  servlet:
+    context-path: /spring-cloud-config-jdbc
+    
+spring:
+  profiles:
+    active: dev
+  application: 
+    name: spring-cloud-config-jdbc
+  autoconfigure:
+    exclude:
+    - 
+
+ # 数据源
+  datasource: 
+    url: 'jdbc:mysql://127.0.0.1:3306/spring?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai'
+    username: root
+    password:  root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: ConfigDatasource
+    continue-on-error: false
+   
+  cloud:
+    config:
+      # 远程默认配置名称
+      name: 
+      server: 
+        jdbc:
+          #order: 0
+          # 查询语句
+          sql: SELECT KEY, VALUE from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?
+
+  http: 
+    log-request-details: true
+    encoding:
+      force: true
+      force-response: true
+      force-request: true
+      charset: UTF-8
+      
+      
+# spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths:
+      - src/main/java
+
+
+
+
+
+
+
+
+
+
+
+

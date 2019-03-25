@@ -100,6 +100,7 @@ public final class SprigCloudTest extends BaseTest {
 	public void test() {
 		try {
 			
+			
 		} catch (Exception e) {
 			log.error("test =====> ", e);
 		}

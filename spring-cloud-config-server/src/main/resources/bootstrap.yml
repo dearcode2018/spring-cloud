@@ -5,7 +5,15 @@
 # 加密解密
 encrypt: 
   key: Thisismysecretkey
-
+  
+spring: 
+  cloud:
+    config:
+      server:
+        # 是否开启加密解密，若关闭 从远程仓库获取加密值将不会界面直接给客户端
+        # 将解密功能交给各个客户端独自去解密
+        encrypt:
+          enabled: true
 
 
 

@@ -28,9 +28,9 @@ org.springframework.boot.env.PropertySourceLoader
 2) 获取密文
 加密: curl -X POST http://127.0.0.1:1010/spring-cloud-config-server/encrypt -d test_123456
 /decrypt是解密
-3) 填写到远端配置文件(git仓库)，注意{cipher}为前缀，若为properties则无需引号包围.
-若是在yml配置文件中，则需加上单引号包围起来，properties文件则不需要.
+3) 填写到远端配置文件(git仓库)，注意{cipher}为前缀，无需引号包围.
+若是在yml或properties配置文件中，则需加上单引号包围起来.
 some.password={cipher}7d2976c7fb18a91b3193d7dfd3660edd07c7901fecd4bbf89f064a73d23bb1fa
 4) 在客户端通过 	@Value("${some.password}") 即可显示明文，因为在config-server
 已经作为解密处理
-若无法解码，则返回 <n/a>，避免错误将原文写在配置中，这是一个预警机制.
+

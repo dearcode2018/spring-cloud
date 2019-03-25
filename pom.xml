@@ -24,6 +24,7 @@
 		<module>spring-cloud-client</module>		
 		<module>spring-cloud-config</module>	
 		<module>spring-cloud-config-client</module>
+		<module>spring-cloud-config-jdbc</module>
 		<module>spring-cloud-config-server</module>	
 		<module>spring-cloud-eureka</module>
 		<module>spring-cloud-eureka-replica</module>

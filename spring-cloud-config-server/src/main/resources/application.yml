@@ -7,15 +7,6 @@ server:
      
   servlet:
     context-path: /spring-cloud-config-server
-
-# 加密解密
-#encrypt:
-#  key: mykey
-#  key-store:
-#    location: classpath:/server.jsk
-#    password: changeme
-#    alias: mytestkey
-#    secret: changme
     
 spring:
   profiles:
@@ -30,12 +21,36 @@ spring:
     config:
       # 远程默认配置名称
       name: 
+      # 允许客户端(Config Client)本地属性源覆盖
+      override-none: true
       server:
+        # 当前应用(Config Server)是否从远程仓库(其他配置服务器)配置自己
+        # 此时需要在 bootstrap.yml中引入远程配置服务器配置
+        bootstrap: true
+        # 覆盖的key-value集合，在此设置的值将覆盖仓库属性源的值
+        overrides:
+          # 覆盖所有 key=a.b的配置，注意实际已经生效了，@Value("${a.b}") 已经生效
+          # 但通过接口去查还是原先的值 
+          # 接口地址: http://127.0.0.1:1010/spring-cloud-config-server/spring-cloud-config-client/dev
+          a.b: haha
+          # 原因: 配置系统不能强制应用程序以任何特定方式使用配置数据。
+          # 因此，覆盖是不可执行的。但是，
+          # 它们确实为Spring Cloud Config客户端提供了有用的默认行为。          
         # 配置源地址 git
-        git:
+        git: 
+        # 本地仓库目录，默认config-repo
+        # 注意，一定要指定配置，否则将在temp目录下生成很多冗余的目录
+          basedir: /config-repo
           # 跳过SSL验证
           skip-ssl-validation: true
+          # 是否从git强制拉取
+          force-pull: true
+          # 启动时克隆仓库
           clone-on-start: true
+          # 从git仓库拉取配置的频率，0-每次请求从仓库获取最新配置，单位 秒
+          refresh-rate: 600
+          # 从本地强制删除未跟踪(远程已删除)的分支
+          delete-untracked-branches: true
           #  本地配置库: 从远程下载到本地
           # 本地配置库(Windows): uri: file:///$USER_HOME/config-repo
           # 本地配置(Linux)库: uri: file://$USER_HOME/config-repo
@@ -43,10 +58,19 @@ spring:
           #timeout: 10
           
           # 帐号密码方式 #
-          #uri: http://127.0.0.1/xx/config-repo.git
-          #username: zhangsan
-          #password: 123456
-          
+          uri: http://172.25.38.44/qianye.zheng/config-repo.git
+          username: '{cipher}ecc0fd99a9d69fadc74288088b81d9e8d392ffbc228e8f8919efde9d3927ab08'
+          password: '{cipher}33d82ca5bfc3501345bf2a12da2bd846800c33919a4912ece114b13ec884f024'
+          # 多种仓库匹配模式
+#          repos:
+#            simple: http://172.25.38.44/qianye.zheng/config-repo.git
+#            special: 
+#              name: MatchSpecial
+#              pattern: spring-cloud-config-*/dev*, cloud-config*/dev*
+#            local: 
+#              name: matchLocal
+#              pattern: dev*
+              
           # SSH 方式 #
           #uri: git@127.0.0.1:xx/config-repo.git
           host-key-algorithm: ssh-rsa
