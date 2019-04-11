@@ -27,7 +27,7 @@
 		<module>spring-cloud-config-jdbc</module>
 		<module>spring-cloud-config-server</module>	
 		<module>spring-cloud-eureka</module>
-		<module>spring-cloud-eureka-replica</module>
+		<module>spring-cloud-feign</module>
 		<module>spring-cloud-hystrix</module>		
 		<module>spring-cloud-ribbon</module>		
 		<module>spring-cloud-zuul</module>		

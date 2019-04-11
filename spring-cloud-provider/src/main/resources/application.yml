@@ -3,13 +3,16 @@ server:
   port: 7070
  
   servlet:
-    context-path: /
+    context-path: /spring-cloud-provider
  
 spring:
   profiles:
-    active:
-    - dev
-
+    active: dev
+  
+  # 应用名称，注册到eureka显示的名称
+  application:
+    name: spring-cloud-provider
+    
   autoconfigure:
     exclude:
     - 
@@ -24,8 +27,15 @@ spring:
       additional-paths:
       - src/main/java
 
-
-
+# 注册中心
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url: 
+      defaultZone: http://127.0.0.1:6868/spring-cloud-eureka/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
 
 
 

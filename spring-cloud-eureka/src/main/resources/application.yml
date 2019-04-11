@@ -1,52 +1,52 @@
-
-server:
-  port: 6868
- 
-  servlet:
-    context-path: /spring-cloud-eureka
  
 spring:
   profiles:
-    active:
-    - dev
-  application:
-    name: spring-cloud-eureka
-  autoconfigure:
-    exclude:
-    - 
+    active: peer1
 
-eureka:
+server: 
+  servlet:
+    context-path: /spring-cloud-eureka    
+
+eureka: 
   client:
-   # 自身不注册
-    register-with-eureka: false
-    fetch-registry: false
-
-  instance:
-    instance-id: ${spring.application.name}:${server.port}
-    ip-address: 127.0.0.1
+    service-url:
+      # 对等实例的地址 (可以提取出来作为公共部分)
+      defaultZone: http://127.0.0.1:6868/eureka/
+    # 健康检查
+    healthcheck:
+      enabled: true
   server:
     enable-self-preservation: false
     # 回收时间间隔
     eviction-interval-timer-in-ms: 6000
+
+# 通过不同的profiles，实现eureka对等实例
+---
+spring:
+  profiles: peer1
+
+  application:
+    name: spring-cloud-eureka 
     
+server:
+  port: 6868
+ 
+eureka:
+  instance:
+    hostname: 127.0.0.1
 
-  http:
-    log-request-details: true
+---
+spring:
+  profiles: peer2
+  application:
+    name: spring-cloud-eureka-replica
 
-# spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
-  devtools:
-    restart:
-      enabled: true
-      additional-paths:
-      - src/main/java
+server:
+  port: 6869
 
-   
-
-
-
-
-
-
+eureka:
+  instance:
+    hostname: 127.0.0.1
 
 
 

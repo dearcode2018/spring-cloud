@@ -60,7 +60,12 @@
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>jul-to-slf4j</artifactId>
-				</exclusion>									
+				</exclusion>	
+				<!-- 排除和log4j2冲突 -->	
+				<exclusion>
+   					 <groupId>org.apache.logging.log4j</groupId>
+ 					 <artifactId>log4j-to-slf4j</artifactId>  					 				
+				</exclusion>														
 			</exclusions>
 		</dependency>	
 		
@@ -70,12 +75,30 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>	
+		
+		<!-- hystrix -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>	
 
 <!-- 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>	 -->
+
+	  	<dependency> 
+	        <groupId>org.springframework.boot</groupId> 
+	        <artifactId>spring-boot-starter-actuator</artifactId> 
+	    </dependency>
+		
+		<!-- Hystrix 仪表板 -->
+	  	<dependency> 
+	        <groupId>org.springframework.cloud</groupId> 
+	        <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId> 
+	    </dependency>
+
 		
 	</dependencies>
 
