@@ -7,9 +7,10 @@ server:
  
 spring:
   profiles:
-    active:
-    - dev
-
+    active: dev
+    
+  application:
+    name: 
   autoconfigure:
     exclude:
     - 
@@ -25,11 +26,10 @@ spring:
       - src/main/java
 
 
-ribbon:
-  eager-load:
-    # 允许负荷缓存
-    enabled: true
-
+  rabbitmq:
+    host: 192.168.5.11
+    addresses: 192.168.5.11
+    port: 5672
 
 
 

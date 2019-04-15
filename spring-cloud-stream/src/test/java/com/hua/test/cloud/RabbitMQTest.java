@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * ConsumerTest.java
+ * RabbitMQTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.test.boot;
+package com.hua.test.cloud;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -20,9 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.junit.jupiter.api.AfterEach;
@@ -32,20 +29,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.cloud.stream.messaging.Sink;
 
 import com.hua.ApplicationStarter;
-import com.hua.bean.ResultBean;
-import com.hua.service.CallProviderService;
 import com.hua.test.BaseTest;
-import com.hua.util.JacksonUtil;
 
 
 /**
  * 描述: 
  * 
  * @author qye.zheng
- * ConsumerTest
+ * RabbitMQTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
@@ -56,7 +50,7 @@ import com.hua.util.JacksonUtil;
 @SpringBootTest(classes = {ApplicationStarter.class}, 
 webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 //@MapperScan(basePackages = {"com.hua.mapper"})
-public final class ConsumerTest extends BaseTest {
+public final class RabbitMQTest extends BaseTest {
 
 	
 	/*
@@ -83,19 +77,9 @@ public final class ConsumerTest extends BaseTest {
 	 * 而启动spring 及其mvc环境，然后通过注入方式，可以走完 spring mvc 完整的流程.
 	 * 
 	 */
-	//@Resource
-	//private UserController userController;
-	//@Resource
-	//private PersonDao personDao;
-	
 	@Resource
-	private RestTemplate restTemplate;
+	private Sink  sink;
 	
-	//@Resource
-	//private SpeakClient speakClient;
-
-	@Resource
-	private CallProviderService callProviderService;
 	/**
 	 * 引当前项目用其他项目之后，然后可以使用
 	 * SpringJunitTest模板测试的其他项目
@@ -106,113 +90,24 @@ public final class ConsumerTest extends BaseTest {
 	 * 
 	 */
 	
-	/**
-	 * 
-	 * 描述: 
-	 * @author qye.zheng
-	 * 
-	 */
-	@Test
-	public void testConsumer() {
-		try {
-			
-			final Map<String, Object> param = new HashMap<String, Object>();
-			param.put("content", "hi,i am a consumer");
-			/*
-			 * 提供者带项目名启动时，发起调用的路径必须也带上相同的路径
-			 * 否则发生404错误.
-			 * 第一个是服务名(注册到Eureka的 application.name)、第二个是项目名(提供者的context-path)
-			 *
-			 *因为有了服务名，提供者通常都不要再带上项目名来发布了.
-			 */
-			//ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/spring-cloud-provider/speak/say", ResultBean.class, param);
-			
-			/*
-			 * 提供者不带项目名启动，直接拼接服务名+接口路径即可
-			 */
-			//ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/speak/say", ResultBean.class, param);
-			/*
-			 * 提供者带项目名启动，服务名+上下文路径+接口路径
-			 */
-			ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/spring-cloud-provider/speak/say", ResultBean.class, param);
-						
-			System.out.println(JacksonUtil.writeAsString(resultBean));
-		} catch (Exception e) {
-			log.error("testConsumer =====> ", e);
-		}
-	}
-	
-	/**
-	 * 
-	 * 描述: 
-	 * @author qye.zheng
-	 * 
-	 */
-	@Test
-	public void testCallZuul() {
-		try {
-			
-			final Map<String, Object> param = new HashMap<String, Object>();
-			param.put("content", "hi,i am a consumer");
-			/*
-			 * 提供者带项目名启动时，发起调用的路径必须也带上相同的路径
-			 * 否则发生404错误.
-			 * 第一个是服务名(注册到Eureka的 application.name)、第二个是项目名(提供者的context-path)
-			 *
-			 *因为有了服务名，提供者通常都不要再带上项目名来发布了.
-			 */
-			//ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/spring-cloud-provider/speak/say", ResultBean.class, param);
-			
-			/*
-			 * 提供者不带项目名启动，直接拼接服务名+接口路径即可
-			 */
-			//ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/speak/say", ResultBean.class, param);
-			/*
-			 * 提供者带项目名启动，服务名+上下文路径+接口路径
-			 */
-			/*
-			 * 调用网关，网关服务名+网关上下文路径+目标服务名+目标服务上下文路径+目标服务接口路径
-			 */
-			ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-zuul/spring-cloud-zuul/spring-cloud-provider/spring-cloud-provider/speak/say", ResultBean.class, param);
-						
-			System.out.println(JacksonUtil.writeAsString(resultBean));
-		} catch (Exception e) {
-			log.error("testCallZuul =====> ", e);
-		}
-	}	
-	
-	/**
-	 * 
-	 * 描述: 
-	 * @author qye.zheng
-	 * 
-	 */
-	@Test
-	public void testHystrix() {
-		try {
-			ResultBean resultBean = callProviderService.call();
 
-			System.out.println(JacksonUtil.writeAsString(resultBean));
-		} catch (Exception e) {
-			log.error("testHystrix =====> ", e);
-		}
-	}
-	
 	/**
 	 * 
 	 * 描述: 
 	 * @author qye.zheng
 	 * 
 	 */
+	//@DisplayName("test")
 	@Test
-	public void testFeignClient() {
+	public void testContexLoad() {
 		try {
-			//speakClient.say("abc");
+			sink.input();
 			
 		} catch (Exception e) {
-			log.error("testFeignClient =====> ", e);
+			log.error("testContexLoad =====> ", e);
 		}
 	}	
+	
 	
 	/**
 	 * 

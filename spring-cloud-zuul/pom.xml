@@ -12,7 +12,6 @@
 	<packaging>jar</packaging>
 	
 	<properties>
-	
 	</properties>
 
 	<!-- 使用spring boot 构建插件 运行: mvn spring-boot:run -->
@@ -100,6 +99,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>	
+
+		<dependency>
+		    <groupId>com.squareup.okhttp3</groupId>
+		    <artifactId>okhttp</artifactId>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.springframework.retry</groupId>
+		    <artifactId>spring-retry</artifactId>
+		</dependency>
 
 <!-- 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -6,6 +6,8 @@
  */
 package com.hua.filter;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
@@ -31,6 +33,11 @@ public class ServiceZuulFilter extends ZuulFilter
 	{// 需要过滤的
 		
 		System.out.println("ServiceZuulFilter.shouldFilter()");
+/*
+		RequestContext ctx = RequestContext.getCurrentContext();
+		return !ctx.containsKey(FORWARD_TO_KEY) // a filter has already forwarded
+				&& !ctx.containsKey(SERVICE_ID_KEY); // a filter has already determined serviceId		
+*/		
 		
 		return true;
 	}
@@ -46,10 +53,20 @@ public class ServiceZuulFilter extends ZuulFilter
 	{
 		System.out.println("ServiceZuulFilter.run()");
 		 // 业务逻辑
-		RequestContext requestContext = RequestContext.getCurrentContext();
+		RequestContext context = RequestContext.getCurrentContext();
 		//requestContext.setResponseStatusCode(404);
+		// 路由到指定url
+		context.setRouteHost(null);
+		HttpServletRequest request = context.getRequest();
 		
-		return requestContext;
+		// 拦截了通往微服务的请求
+		// 不请求微服务
+		//context.setSendZuulResponse(false);
+		// 401 无权限
+		//context.setResponseStatusCode(401);
+		
+		
+		return context;
 	}
 
 	/**
@@ -78,6 +95,8 @@ public class ServiceZuulFilter extends ZuulFilter
 	@Override
 	public int filterOrder()
 	{
+		
+		//return PRE_DECORATION_FILTER_ORDER - 1;
 		return 0;
 	}
 

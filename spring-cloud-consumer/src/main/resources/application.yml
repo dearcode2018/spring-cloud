@@ -1,6 +1,6 @@
 
 server:
-  port: 7070
+  port: 2020
  
   servlet:
     context-path: /
@@ -9,6 +9,10 @@ spring:
   profiles:
     active:
     - dev
+
+  # 应用名称，注册到eureka显示的名称
+  application:
+    name: spring-cloud-consumer
 
   autoconfigure:
     exclude:
@@ -35,7 +39,15 @@ spring:
   aop:
     proxy-target-class: true
 
-
+# 注册中心
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    service-url: 
+      defaultZone: http://127.0.0.1:6868/spring-cloud-eureka/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
 
 
 

@@ -25,8 +25,32 @@ spring:
       additional-paths:
       - src/main/java
 
-
-
+feign:
+  client: 
+    # false表示优先级较高为@Configuration
+    default-to-properties: false
+    config: 
+     # 所有客户端默认的属性
+      default: 
+      # 特定客户端的属性
+      users: 
+        connect-timeout: 5000
+        read-timeout: 5000
+        decode404: false
+  
+  # 请求/响应开启GZIP压缩
+  compression:
+    request:
+      enabled: true
+      # 要压缩的媒体类型
+      mime-types: text/xml,application/xml,application/json
+      # 最小请求阈值长度
+      min-request-size: 2048
+    response:
+      enabled: true
+  hystrix:
+    # 禁用hystrix
+    enabled: false
 
 
 

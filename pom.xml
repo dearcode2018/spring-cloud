@@ -38,6 +38,7 @@
 		<module>spring-cloud-task</module>
 		<module>spring-cloud-test</module>
 		<module>spring-cloud-security</module>
+		<module>spring-cloud-stream</module>
 	</modules>
  
 	<!-- 公共属性 -->

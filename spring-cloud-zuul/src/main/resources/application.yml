@@ -1,15 +1,16 @@
 
 server:
-  port: 7070
+  port: 1010
  
   servlet:
-    context-path: /
+    context-path: /spring-cloud-zuul
  
 spring:
   profiles:
     active:
     - dev
-
+  application:
+    name: spring-cloud-zuul
   autoconfigure:
     exclude:
     - 
@@ -25,13 +26,66 @@ spring:
       - src/main/java
 
 
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:6868/spring-cloud-eureka/eureka/
 
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
 
+zuul:
+  # 去掉代理的前缀，仅适用于 zuul.prefix的前缀
+  strip-prefix: true
+  prefix: 
+  # 是否重试失败的请求
+  retryable: true
+   # 是否 添加 X-Forwarded-Host头，默认是添加
+  add-proxy-headers: false
+  # 过滤敏感的请求头，微服务只能信任网关设置的请求头，默认值: Authorization,Cookie,Set-Cookie
+  # 黑名单默认是非空，可以在此显式设置为空
+  #sensitive-headers: xx,yy
+  # 忽略头部，该值在请求/响应之间丢弃
+  ignored-headers: xx,yy
+  # 强制使用查询字符串的原始编码
+  force-original-query-string-encoding: true
+  # 是否对url解码 
+  decode-url: false
 
+  # 路由声明
+  routes: 
+  # 特定服务
+   spring-cloud-provider: 
+      path: /spring-cloud-provider/**
+      serviceId: spring-cloud-provider
+      # 是否重试，默认重试2次
+      retryable: true
+        
+  ribbon:
+    # 启用预先加载
+    eager-load:
+      enabled: true
+  
+  host:
+    # 默认是2秒，在调试中容易超时
+    connect-timeout-millis: 30000
+    connection-request-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  
+    
+ribbon:
+  okhttp:
+    # 指定 Zuul的客户端为OkHttpClient
+    enabled: true
 
+hystrix:
+  metrics:
+    polling-interval-ms: 30000
 
-
-
-
+spring-cloud-provider: 
+  ribbon: 
+     ReadTimeout: 30000
+     ConnectTimeout: 30000
 
 
