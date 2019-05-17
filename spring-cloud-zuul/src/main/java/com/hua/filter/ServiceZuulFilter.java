@@ -8,6 +8,7 @@ package com.hua.filter;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
@@ -84,7 +85,7 @@ public class ServiceZuulFilter extends ZuulFilter
 		 * We also support a "static" type for static responses see  StaticResponseFilter.
 		 */
 		
-		return "pre";
+		return FilterConstants.PRE_TYPE;
 	}
 
 	/**
@@ -97,7 +98,7 @@ public class ServiceZuulFilter extends ZuulFilter
 	{
 		
 		//return PRE_DECORATION_FILTER_ORDER - 1;
-		return 0;
+		return 100;
 	}
 
 }

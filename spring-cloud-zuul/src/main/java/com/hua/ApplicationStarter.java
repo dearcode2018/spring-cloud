@@ -7,9 +7,8 @@
 package com.hua;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.context.annotation.ImportResource;
 
  /**
  * @type ApplicationStarter
@@ -21,7 +20,8 @@ import org.springframework.context.annotation.ImportResource;
 /* @SpringBootApplication已经包含 @Configuration @EnableAutoConfiguration @ComponentScan */
 //@SpringBootApplication(scanBasePackages = {"com.hua"})
 /* 该类在根包(basePackage)下，则无须再指定scanBasePackages */
-@SpringBootApplication
+//@SpringBootApplication
+@SpringCloudApplication
 /* 开启Zuul (网关)代理 */
 @EnableZuulProxy
 /* 启动指定特性 */

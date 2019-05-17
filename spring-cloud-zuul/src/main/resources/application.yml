@@ -54,13 +54,13 @@ zuul:
   decode-url: false
 
   # 路由声明
-  routes: 
+  #routes: 
   # 特定服务
-   spring-cloud-provider: 
-      path: /spring-cloud-provider/**
-      serviceId: spring-cloud-provider
-      # 是否重试，默认重试2次
-      retryable: true
+#   spring-cloud-provider: 
+#      path: /spring-cloud-provider/**
+#      serviceId: spring-cloud-provider
+#      # 是否重试，默认重试2次
+#      retryable: true
         
   ribbon:
     # 启用预先加载
