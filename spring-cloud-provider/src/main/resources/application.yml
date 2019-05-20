@@ -36,7 +36,7 @@ eureka:
       #defaultZone: http://127.0.0.1:6868/spring-cloud-eureka/eureka/
       #defaultZone: http://172.25.62.113:123456@peer2:8761/eureka/,http://172.25.62.183:6600/eureka/,http://172.25.62.184:6600/eureka/,http://172.25.62.185:6600/eureka/,http://172.25.62.50:7200/eureka/,http://172.25.102.121:8761/eureka/ 
       #defaultZone: http://172.25.102.121:8761/eureka/ 
-      defaultZone: http://172.25.61.117:8080/eureka/,http://172.25.61.118:8080/eureka/
+      defaultZone: http://172.25.62.50:7200/eureka/
   instance:
     instance-id: ${spring.application.name}:${server.port}
 
