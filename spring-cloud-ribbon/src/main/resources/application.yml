@@ -6,10 +6,11 @@ server:
     context-path: /
  
 spring:
+  application:
+    name: spring-cloud-ribbon
   profiles:
     active:
     - dev
-
   autoconfigure:
     exclude:
     - 
@@ -23,6 +24,8 @@ spring:
       enabled: true
       additional-paths:
       - src/main/java
+      
+
 
 
 ribbon:
@@ -30,7 +33,15 @@ ribbon:
     # 允许负荷缓存
     enabled: true
 
-
+# 注册中心
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5    
+    service-url: 
+      #defaultZone: http://192.168.5.11:6868/eureka/,http://192.168.5.12:6869/eureka/
+      defaultZone: http://192.168.5.11:6868/eureka/
 
 
 

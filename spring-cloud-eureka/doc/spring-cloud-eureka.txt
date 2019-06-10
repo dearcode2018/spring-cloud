@@ -41,7 +41,7 @@ spring.application.name=spring-cloud-eureka
 
 eureka.client.registerWithEureka=true
 eureka.client.fetchRegistry=true
-# 另外一个Eureka应用，2个Eureka做HA，Eureka的服务路径是 /erreka
+# 另外一个Eureka应用，2个Eureka做HA，Eureka的服务路径是 /eureka
 eureka.client.serviceUrl.defaultZone=http://localhost:6869/spring-cloud-eureka-replica/eureka
 eureka.instance.prefer-ip-address=true
 eureka.instance.ip-address=127.0.0.1
@@ -62,7 +62,7 @@ http://127.0.0.1:6868/spring-cloud-eureka/
 http://127.0.0.1:6869/spring-cloud-eureka-replica/
 可以在 <Instances currently registered with Eureka> 中看到已经注册的实例
 
-
-
+带身份验证
+http://user:password@ip:port/eureka
 
 

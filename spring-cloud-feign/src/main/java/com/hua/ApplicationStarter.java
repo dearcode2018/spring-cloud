@@ -8,6 +8,8 @@ package com.hua;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
  /**
@@ -23,12 +25,14 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 // OpenFeign
 @EnableFeignClients
+@EnableDiscoveryClient
 /* 启动指定特性 */
 //@Configuration
 //@EnableAutoConfiguration
 //@ComponentScan
 //@EnableDiscoveryClient
-//@EnableCircuitBreaker
+/* 开启断路器 */
+@EnableCircuitBreaker
 //@EnableHystrixDashboard //
 //@EntityScan
 public class ApplicationStarter

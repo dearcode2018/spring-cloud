@@ -1,26 +1,36 @@
  
 spring:
   profiles:
+   # 默认激活的
     active: peer1
 
 server: 
-  servlet:
-    context-path: /spring-cloud-eureka    
+  servlet: 
+    context-path: /
+    #context-path: /spring-cloud-eureka    
 
 eureka: 
   client:
-    service-url:
+    register-with-eureka: true # 是否注册到Eureka注册中心
+    fetch-registry: true # 是否从Eureka获取注册信息
+    registry-fetch-interval-seconds: 5    
+    service-url: 
       # 对等实例的地址 (可以提取出来作为公共部分)
-      defaultZone: http://127.0.0.1:6868/eureka/
+      #defaultZone: http://192.168.5.11:6868/eureka/,http://192.168.5.12:6869/eureka/
+      defaultZone: http://192.168.5.11:6868/eureka/
     # 健康检查
     healthcheck:
       enabled: true
   server:
     enable-self-preservation: false
     # 回收时间间隔
-    eviction-interval-timer-in-ms: 6000
+    eviction-interval-timer-in-ms: 5000
+    peer-eureka-nodes-update-interval-ms: 3000
+    peer-eureka-status-refresh-time-interval-ms: 3000
+    
 
 # 通过不同的profiles，实现eureka对等实例
+# peer1
 ---
 spring:
   profiles: peer1
@@ -33,8 +43,13 @@ server:
  
 eureka:
   instance:
-    hostname: 127.0.0.1
+    #hostname: 192.168.5.11
+    ip-address: 192.168.5.11
+    secure-port-enabled: true
+    non-secure-port-enabled: false
+    prefer-ip-address: true # 使用ip而不是hostname
 
+# peer2
 ---
 spring:
   profiles: peer2
@@ -46,8 +61,12 @@ server:
 
 eureka:
   instance:
-    hostname: 127.0.0.1
-
+    #hostname: 192.168.5.12
+    ip-address: 192.168.5.12
+    secure-port-enabled: true
+    non-secure-port-enabled: false
+    prefer-ip-address: true # 使用ip而不是hostname
+    
 
 
 

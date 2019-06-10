@@ -25,6 +25,16 @@ spring:
       additional-paths:
       - src/main/java
 
+# 注册中心
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5    
+    service-url: 
+      #defaultZone: http://192.168.5.11:6868/eureka/,http://192.168.5.12:6869/eureka/
+      defaultZone: http://192.168.5.11:6868/eureka/
+
 feign:
   client: 
     # false表示优先级较高为@Configuration
@@ -32,6 +42,9 @@ feign:
     config: 
      # 所有客户端默认的属性
       default: 
+        connect-timeout: 3000
+        read-timeout: 3000
+        logger-level: basic
       # 特定客户端的属性
       users: 
         connect-timeout: 5000
@@ -49,14 +62,13 @@ feign:
     response:
       enabled: true
   hystrix:
-    # 禁用hystrix
-    enabled: false
-
-
-
-
-
-
+    # 是否启用hystrix，启用hystrix之后Feign调用超时 
+    # timed-out and no fallback available. 原因暂时不明确
+    enabled: true
+  
+ribbon:
+  eureka:
+    enabled: true
 
 
 

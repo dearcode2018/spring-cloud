@@ -44,11 +44,14 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: true
+    registry-fetch-interval-seconds: 5    
     service-url: 
-      defaultZone: http://127.0.0.1:6868/spring-cloud-eureka/eureka/
+      #defaultZone: http://192.168.5.11:6868/eureka/,http://192.168.5.12:6869/eureka/
+      defaultZone: http://192.168.5.11:6868/eureka/
+      
   instance:
     instance-id: ${spring.application.name}:${server.port}
-
+    #lease-renewal-interval-in-seconds: 5
 
 
 

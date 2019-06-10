@@ -145,8 +145,9 @@ public final class ConsumerTest extends BaseTest {
 			 * 
 			 * 
 			 */
+			//ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-zuul/spring-cloud-zuul/spring-cloud-provider/spring-cloud-provider/speak/say?content={content}", ResultBean.class, param);
 			ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-zuul/spring-cloud-zuul/spring-cloud-provider/spring-cloud-provider/speak/say?content={content}", ResultBean.class, param);
-						
+					
 			System.out.println(JacksonUtil.writeAsString(resultBean));
 		} catch (Exception e) {
 			log.error("testCallZuul =====> ", e);
@@ -184,8 +185,9 @@ public final class ConsumerTest extends BaseTest {
 			/*
 			 * 提供者带项目名启动，服务名+上下文路径+接口路径
 			 */
-			ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/spring-cloud-provider/speak/say?content={content}", ResultBean.class, param);
-						
+			//ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/spring-cloud-provider/speak/say?content={content}", ResultBean.class, param);
+			ResultBean resultBean = restTemplate.getForObject("http://spring-cloud-provider/speak/say?content={content}", ResultBean.class, param);
+					
 			System.out.println(JacksonUtil.writeAsString(resultBean));
 		} catch (Exception e) {
 			log.error("testConsumer =====> ", e);

@@ -16,7 +16,7 @@ import com.netflix.loadbalancer.ConfigurationBasedServerList;
  * @description 
  * @author qianye.zheng
  */
-@RibbonClients(defaultConfiguration = DefaultRibbonConfig.class)
+//@RibbonClients(defaultConfiguration = DefaultRibbonConfig.class)
 public class RibbonClientDefaultConfigurationConfig
 {
 	
