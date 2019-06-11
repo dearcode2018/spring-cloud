@@ -7,12 +7,12 @@
 		<artifactId>spring-cloud-entire</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>spring-cloud-core</artifactId>
-	<name>spring-cloud-core</name>
+	<artifactId>spring-cloud-redis</artifactId>
+	<name>spring-cloud-redis</name>
 	<packaging>jar</packaging>
 	
 	<properties>
-		<common.version>0.0.1</common.version>
+	
 	</properties>
 
 	<!-- 使用spring boot 构建插件 运行: mvn spring-boot:run -->
@@ -29,10 +29,23 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>common</artifactId>
-			<version>${common.version}</version>
+			<artifactId>spring-cloud-core</artifactId>
+			<version>${spring.cloud.core.version}</version>
+			<exclusions>
+				<exclusion>
+					<!-- 排除devtool，验证 @RefreshScope需要排除此依赖 -->
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-devtools</artifactId>				
+				</exclusion>
+			</exclusions>			
 		</dependency>		
 	
+<!-- 		<dependency>
+			<groupId>com.hua</groupId>
+			<artifactId>web</artifactId>
+			<version>${web.version}</version>
+		</dependency> -->
+		
 		<!-- spring boot starter web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -54,19 +67,14 @@
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>jul-to-slf4j</artifactId>
-				</exclusion>		
+				</exclusion>	
 				<!-- 排除和log4j2冲突 -->	
 				<exclusion>
    					 <groupId>org.apache.logging.log4j</groupId>
  					 <artifactId>log4j-to-slf4j</artifactId>  					 				
-				</exclusion>													
+				</exclusion>														
 			</exclusions>
 		</dependency>	
-	
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter</artifactId>
-		</dependency>
 		
 		<!-- 测试 -->
 		<dependency>
@@ -77,64 +85,25 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<!-- 让依赖工程继承该依赖 -->
-			<!-- <optional>true</optional> -->
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>	
-	
+
+		<!-- cache redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>	
+
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		</dependency>
+
 <!-- 		<dependency>
-		    <groupId>com.netflix.archaius</groupId>
-		    <artifactId>archaius-core</artifactId>
-		    <version>${netflix.archaius.version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
 		</dependency>	 -->
-
-		<!--httpclient -->
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpcore</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>fluent-hc</artifactId>
-			<exclusions>
-				<exclusion>
-				  <groupId>commons-logging</groupId>
-				  <artifactId>commons-logging</artifactId>				
-				</exclusion>
-			</exclusions>			
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpasyncclient</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient-cache</artifactId>
-			<exclusions>
-				<exclusion>
-				  <groupId>commons-logging</groupId>
-				  <artifactId>commons-logging</artifactId>				
-				</exclusion>
-			</exclusions>			
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpcore-nio</artifactId>
-		</dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
 		
 	</dependencies>
 

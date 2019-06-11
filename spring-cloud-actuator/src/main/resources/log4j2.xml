@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+               
+	<!-- 属性定义 -->
+	<properties>
+		<!-- 声明变量 -->
+		<property name="var_name">var_value</property>
+	</properties>
+
+	<!-- 输出者 -->
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<!-- 格式布局 -->
+			<PatternLayout
+				pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		
+	</Appenders>
+	
+	<!-- 日志 -->
+	<Loggers>
+		<!-- Root -->
+		<Root level="info">
+			<AppenderRef ref="Console" />
+		</Root>
+		<!-- 设置包日志级别 -->
+<!-- 		<Logger name="com.hua.test" level="trace" /> -->
+	</Loggers>
+</Configuration>

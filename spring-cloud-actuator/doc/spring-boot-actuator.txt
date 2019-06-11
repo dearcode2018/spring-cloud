@@ -1,0 +1,24 @@
+Spring Boot
+
+1.配置文件
+使用 application.properties 或 application.yaml
+
+
+
+
+
+
+
+1) 没有 spring-boot-devtools，可以通过spring-boot-starter-actuator暴露的端点刷新相关配置
+在spring-cloud架构下的@RefreshScope注解可以刷新Bean.
+2) 要刷新Bean，需要同时在类级和方法级上声明@RefreshScope才能生效，单方面声明无效
+
+
+
+
+
+
+
+
+
+

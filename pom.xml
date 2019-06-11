@@ -22,6 +22,7 @@
 	<modules>
 		<!-- 模板 -->
 		<module>spring-cloud-template</module>
+		<module>spring-cloud-actuator</module>
 		<module>spring-cloud-core</module>
 		<module>spring-cloud-client</module>
 		<module>spring-cloud-config</module>
@@ -33,6 +34,7 @@
 		<module>spring-cloud-function</module>
 		<module>spring-cloud-hystrix</module>
 		<module>spring-cloud-ribbon</module>
+		<module>spring-cloud-redis</module>
 		<module>spring-cloud-zuul</module>
 		<module>spring-cloud-provider</module>
 		<module>spring-cloud-consumer</module>
