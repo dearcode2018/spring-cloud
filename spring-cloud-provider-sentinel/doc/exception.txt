@@ -1,0 +1,55 @@
+exception 解决方法
+
+1) 消费者调用提供者的接口抛如下异常:
+I/O error on GET request for "http://spring-cloud-provider/speak/say": 
+Failed to connect to USER-20160506UU/2001:0:9d38:953c:24d1:afc4:c273:1163:8080; 
+nested exception is java.net.ConnectException: Failed to connect to 
+USER-20160506UU/2001:0:9d38:953c:24d1:afc4:c273:1163:8080
+
+原因是: 提供者 server.address=127.0.0.1 此配置
+导致无法调用，解决方法是去掉该配置; 可能是因为单机本地环境，导致无法解析，
+或则是该服务绑定的ip，消费者用其他计算机域名/别名去调用时无法正常匹配.
+
+USER-20160506UU 是本地计算机名称
+2001:0:9d38:953c:24d1:afc4:c273:1163 是本地连接的IPv6地址.
+
+server.address=USER-20160506UU/2001:0:9d38:953c:24d1:afc4:c273:1163:8080
+设置成该值之后，是一个非法InetAddress，因此无法启动。
+所以，最后的解决方法是，在本地开发机器，注释掉server.address配置即可.
+
+2)
+
+3)
+
+4)
+
+5)
+
+6)
+
+7)
+
+8)
+
+9)
+
+10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

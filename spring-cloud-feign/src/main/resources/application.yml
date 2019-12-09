@@ -70,5 +70,8 @@ ribbon:
   eureka:
     enabled: true
 
-
+uni: 
+  user:
+    api:  
+      url: http://172.25.62.77:9090/hotel-manage-platform-api
 

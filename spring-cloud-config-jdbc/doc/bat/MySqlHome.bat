@@ -19,7 +19,7 @@
 
 @ rem ----- 变量声明区
 :: 设置 mysql 主目录
-set MYSQL_HOME=D:\"software"\"mysql-5.6.22-win32"
+set MYSQL_HOME=D:\"software"\"mysql-winx64"
 
 :: mysql root 明文密码
 set MYSQL_ROOT_PASSWORD=root

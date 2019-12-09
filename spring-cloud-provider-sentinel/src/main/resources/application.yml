@@ -33,12 +33,12 @@ eureka:
     register-with-eureka: true # 是否注册到Eureka注册中心
     fetch-registry: true # 是否从Eureka获取注册信息
     registry-fetch-interval-seconds: 5
-    service-url: 
+    #service-url: 
       #defaultZone: http://127.0.0.1:6868/spring-cloud-eureka/eureka/
       #defaultZone: http://172.25.62.113:123456@peer2:8761/eureka/,http://172.25.62.183:6600/eureka/,http://172.25.62.184:6600/eureka/,http://172.25.62.185:6600/eureka/,http://172.25.62.50:7200/eureka/,http://172.25.102.121:8761/eureka/ 
       #defaultZone: http://172.25.102.121:8761/eureka/ 
       #defaultZone: http://172.25.62.50:7200/eureka/
-      defaultZone: http://172.25.60.67:6600/eureka/,http://10.21.2.214:6600/eureka/
+      #defaultZone: http://172.25.60.67:6600/eureka/,http://10.21.2.214:6600/eureka/
   #instance:
     #instance-id: ${spring.application.name}:${server.port}
 
