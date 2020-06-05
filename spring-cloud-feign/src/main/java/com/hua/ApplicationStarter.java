@@ -7,9 +7,9 @@
 package com.hua;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
  /**
@@ -22,17 +22,17 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 /* @SpringBootApplication已经包含 @Configuration @EnableAutoConfiguration @ComponentScan */
 //@SpringBootApplication(scanBasePackages = {"com.hua"})
 /* 该类在根包(basePackage)下，则无须再指定scanBasePackages */
-@SpringBootApplication
+@SpringCloudApplication
 // OpenFeign
 @EnableFeignClients
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 /* 启动指定特性 */
 //@Configuration
 //@EnableAutoConfiguration
 //@ComponentScan
 //@EnableDiscoveryClient
 /* 开启断路器 */
-@EnableCircuitBreaker
+@EnableHystrix
 //@EnableHystrixDashboard //
 //@EntityScan
 public class ApplicationStarter

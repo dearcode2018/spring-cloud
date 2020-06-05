@@ -9,6 +9,7 @@ package com.hua.filter;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
@@ -55,7 +56,9 @@ public class ServiceZuulFilter extends ZuulFilter
 		System.out.println("ServiceZuulFilter.run()");
 		 // 业务逻辑
 		RequestContext context = RequestContext.getCurrentContext();
-		//requestContext.setResponseStatusCode(404);
+		//context.setResponseStatusCode(404);
+		context.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
+		// context.set("checkAuth", false);
 		// 路由到指定url
 		context.setRouteHost(null);
 		HttpServletRequest request = context.getRequest();
@@ -89,7 +92,7 @@ public class ServiceZuulFilter extends ZuulFilter
 	}
 
 	/**
-	 * @description 
+	 * @description 执行顺序，数值越小优先级越高
 	 * @return
 	 * @author qianye.zheng
 	 */

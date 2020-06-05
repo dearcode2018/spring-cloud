@@ -11,14 +11,38 @@
 
 【项目规划】
 
-1)
+1) 执行
+a) 执行失败
+超时、异常，均为执行失败
+b) 熔断
+客户端/调用方，发起的熔断，打开断路器开关，进入短路时期，在窗口期内所有
+调用直接走fallback逻辑.
+从第一次失败调用开始，Hystrix会开启一个指定时长的计时器，在时间窗结束后，会统计失败调用频率，
+若高于设置的值，则打开该方法的熔断器，后续对该方法的调用会直接调用fallback方法.
+以下2种场景会统计失败频率:
+频数达到，则统计失败频率.
+时间达到，统计失败频率.
+配置项: 次数、周期，频率
+c) 触发
+不管是连接超时、读取超时、执行失败，均走fallback逻辑.
 
-2)
+2) FeignClient 熔断
+a) 前提条件: @EnableFeignClients、
+配置:
+# 开启feign hystrix熔断
+feign.hystrix.enabled = true
+b) 写法
+@FeignClient.fallback/fallbackFactory
+并且将fallback的实现类注入容器(标注@Component)
+c) 超时时间
+连接超时时间受 configuration.connectTimeOutMillis时间限制
+读取超时时间 取configuration.readTimeOutMillis和hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds
+或者单独的hystrix时间的最小值，哪个先到则走哪个，通常feign读取超时时间略大于hystrix执行超时时间，让hystrix去控制此时间
 
-3)
+3) 本地服务熔断
 
-4)
-
+4) 熔断(断路)器
+断路器打开的标记是，快速失败/快速调用fallback/快速返回
 5)
 
 

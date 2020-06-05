@@ -12,7 +12,7 @@
 	<packaging>jar</packaging>
 	
 	<properties>
-	
+		<hua.web.version>0.0.1</hua.web.version>
 	</properties>
 
 	<!-- 使用spring boot 构建插件 运行: mvn spring-boot:run -->
@@ -32,6 +32,12 @@
 			<artifactId>spring-cloud-core</artifactId>
 			<version>${spring.cloud.core.version}</version>
 		</dependency>		
+		
+		<dependency>
+			<groupId>com.hua</groupId>
+			<artifactId>web</artifactId>
+			<version>${hua.web.version}</version>
+		</dependency>			
 
 <!-- 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

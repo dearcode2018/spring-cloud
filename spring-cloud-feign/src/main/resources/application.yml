@@ -28,7 +28,7 @@ spring:
 # 注册中心
 eureka:
   client:
-    register-with-eureka: false
+    register-with-eureka: true
     fetch-registry: true
     registry-fetch-interval-seconds: 5    
     service-url: 
@@ -50,7 +50,9 @@ feign:
         connect-timeout: 5000
         read-timeout: 5000
         decode404: false
-  
+  # 开启okhttp      
+  okhttp:
+      enabled: true
   # 请求/响应开启GZIP压缩
   compression:
     request:
@@ -74,4 +76,3 @@ uni:
   user:
     api:  
       url: http://172.25.62.77:9090/hotel-manage-platform-api
-

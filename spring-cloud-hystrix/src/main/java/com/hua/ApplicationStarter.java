@@ -8,9 +8,9 @@ package com.hua;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
  /**
  * @type ApplicationStarter
@@ -28,10 +28,11 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 //@EnableAutoConfiguration
 //@ComponentScan
 //@EnableDiscoveryClient
-/* 开启断路器 */
-@EnableCircuitBreaker
 /* 开启 Hystrix 仪表板 */
 @EnableHystrixDashboard
+@EnableFeignClients
+/* 开启断路器 */
+@EnableHystrix
 //@EnableHystrixDashboard //
 //@EntityScan
 public class ApplicationStarter

@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.cloud.netflix.zuul.filters.ProxyRequestHelper;
+import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -129,7 +130,7 @@ public class OkHttpRoutingFilter extends ZuulFilter
 	@Override
 	public String filterType()
 	{
-		return "route";
+		return FilterConstants.ROUTE_TYPE;
 	}
 
 	/**

@@ -1,5 +1,5 @@
 【项目信息】
-项目名称 : spring
+项目名称 : spring-cloud-feign
 中文名称 : Spring
 项目版本 : version 1.0
 
@@ -11,11 +11,16 @@
 
 【项目规划】
 
-1)
+1) 
 
-2)
+2) feign
+@FeignClient
+name: 服务名
+url: 指定url，忽略服务名或服务名不存在，则直接指定服务地址
 
-3)
+3) 协议
+DefaultContract: feign自身的协议 (@RequestLine/@Param/@Headers/@QueryMap/@HeaderMap)
+SpringContract: spring mvc协议
 
 4)
 

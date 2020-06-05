@@ -6,19 +6,20 @@
  */
 package com.hua.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hua.bean.ResultBean;
-import com.hua.constant.Constant;
 import com.hua.entity.User;
 
  /**
@@ -47,6 +48,11 @@ public class SpeakController extends BaseController
 		resultBean.setMessage("Say: " + content);
 		resultBean.setSuccess(true);
 		resultBean.setMessageCode("200");
+		try {
+			TimeUnit.SECONDS.sleep(10);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return resultBean;
 	}
@@ -58,8 +64,9 @@ public class SpeakController extends BaseController
 	 * @return
 	 * @author qianye.zheng
 	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/get")
-	public ResultBean get(final HttpServletRequest request, final HttpServletResponse response, final String content)
+	@GetMapping("/get")
+	public ResultBean get(final HttpServletRequest request, final HttpServletResponse response, final String content, 
+			@RequestHeader("type") final String type, @RequestHeader("someKey") final String someKey)
 	{
 		//System.out.println(request.getCookies()[0].getName());
 		//System.out.println(request.getCookies()[0].getValue());
@@ -73,6 +80,28 @@ public class SpeakController extends BaseController
 		ResultBean resultBean = new ResultBean();
 		resultBean.setId("20180826");
 		resultBean.setMessage("Say(说): " + content);
+		resultBean.setData("headerValue = " + type + ", " + someKey);
+		resultBean.setSuccess(true);
+		resultBean.setMessageCode("200");
+		
+		return resultBean;
+	}
+	
+	/**
+	 * 
+	 * @description 
+	 * @param request
+	 * @param response
+	 * @param user
+	 * @return
+	 * @author qianye.zheng
+	 */
+	@GetMapping("/getMany")
+	public ResultBean getMany(final HttpServletRequest request, final HttpServletResponse response, final User user)
+	{
+		ResultBean resultBean = new ResultBean();
+		resultBean.setId("20180827");
+		resultBean.setMessage("用户名称: " + user.getUsername());
 		resultBean.setSuccess(true);
 		resultBean.setMessageCode("200");
 		
@@ -86,10 +115,9 @@ public class SpeakController extends BaseController
 	 * @return
 	 * @author qianye.zheng
 	 */
-	@RequestMapping(method = RequestMethod.POST, value = "/post")
+	@PostMapping("/post")
 	public ResultBean post(final HttpServletRequest request, final HttpServletResponse response, final @RequestBody User user)
 	{
-		//System.out.println("storeId = " + request.getHeader("storeId" +", name = " + request.getHeader("name")));
 		ResultBean resultBean = new ResultBean();
 		resultBean.setId("20180827");
 		resultBean.setMessage("用户名称: " + user.getUsername());

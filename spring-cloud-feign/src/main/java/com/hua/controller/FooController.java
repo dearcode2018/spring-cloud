@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 import org.springframework.context.annotation.Import;
 
-import com.hua.feign.UserClient;
+import com.hua.contract.mvc.UserClient;
 
 import feign.Client;
 import feign.Contract;
