@@ -62,6 +62,7 @@
 		<spring.cloud.core.version>0.0.1</spring.cloud.core.version>
 		<web.version>0.0.1</web.version>
 		<spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+		<jackson.version>2.11.1</jackson.version>
 	</properties>
 
 
