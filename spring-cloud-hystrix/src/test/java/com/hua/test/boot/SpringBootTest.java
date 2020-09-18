@@ -143,6 +143,14 @@ public class SpringBootTest extends BaseTest {
 		}
 	}
 	
+	void call() {
+		ex();
+	}
+	
+	void ex() throws RuntimeException {
+		throw new RuntimeException("x");
+	}
+	
 	/**
 	 * 
 	 * 描述: 解决ide静态导入消除问题 

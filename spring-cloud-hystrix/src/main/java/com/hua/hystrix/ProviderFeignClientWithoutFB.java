@@ -15,6 +15,7 @@ import com.hua.bean.ResultBean;
 import com.hua.configuration.FeignConfig4Provider;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.hystrix.contrib.javanica.conf.HystrixPropertiesManager;
 
 import feign.hystrix.FallbackFactory;
 
@@ -57,7 +58,7 @@ public interface ProviderFeignClientWithoutFB
 	 * @author qianye.zheng
 	 */
 	@HystrixCommand(commandProperties = {
-		     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
+		     @HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS, value = "3000")
 		})
 	@GetMapping("/speak/say")
 	/* 注意单个参数需要加上@RequestParam，否则报 405异常

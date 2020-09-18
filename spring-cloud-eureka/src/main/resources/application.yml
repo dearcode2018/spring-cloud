@@ -12,6 +12,7 @@ server:
 eureka: 
   client:
     register-with-eureka: true # 是否注册到Eureka注册中心
+    prefer-same-zone-eureka: true
     fetch-registry: true # 是否从Eureka获取注册信息
     registry-fetch-interval-seconds: 5    
     service-url: 

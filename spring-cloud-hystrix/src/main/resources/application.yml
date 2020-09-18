@@ -14,16 +14,13 @@ spring:
     exclude:
     - 
 
-  http:
-    log-request-details: true
-
 # spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
   devtools:
     restart:
       enabled: true
       additional-paths:
       - src/main/java
-
+            
 
 
 

@@ -24,6 +24,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.cloud.netflix.ribbon.RibbonAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -56,7 +57,6 @@ public class SpringBootTest extends BaseTest {
 	@Test
 	public void testSpringBoot() {
 		try {
-		
 			
 		} catch (Exception e) {
 			log.error("testSpringBoot =====> ", e);

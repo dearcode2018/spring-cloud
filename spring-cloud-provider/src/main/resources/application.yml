@@ -3,7 +3,6 @@ server:
   port: 7070
   # 
   tomcat: 
-    maxThreads: 2 # 最大工作线程数
     maxConnections: 4 # 最大连接数，超过了则拒绝连接
     
   servlet:
@@ -20,9 +19,6 @@ spring:
   autoconfigure:
     exclude:
     - 
-
-  http:
-    log-request-details: true
 
 # spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
   devtools:
@@ -43,7 +39,7 @@ eureka:
       #defaultZone: http://172.25.62.113:123456@peer2:8761/eureka/,http://172.25.62.183:6600/eureka/,http://172.25.62.184:6600/eureka/,http://172.25.62.185:6600/eureka/,http://172.25.62.50:7200/eureka/,http://172.25.102.121:8761/eureka/ 
       #defaultZone: http://172.25.102.121:8761/eureka/ 
       #defaultZone: http://172.25.62.50:7200/eureka/
-      defaultZone: http://172.25.62.51:7200/eureka/
+      defaultZone: http://192.168.5.1:6868/eureka/
   #instance:
     #instance-id: ${spring.application.name}:${server.port}
 

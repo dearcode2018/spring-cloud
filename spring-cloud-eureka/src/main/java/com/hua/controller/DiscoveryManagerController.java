@@ -23,8 +23,8 @@ import com.netflix.discovery.DiscoveryClient;
 @RequestMapping("/discoveryManager")
 public class DiscoveryManagerController extends BaseController {
 	
-	@Resource
-    private DiscoveryClient discoveryClient;
+	//@Resource
+    //private DiscoveryClient discoveryClient;
 	
 	/**
 	 * 
@@ -34,9 +34,11 @@ public class DiscoveryManagerController extends BaseController {
 	 */
 	@GetMapping("/offline")
 	public String offline() {
-		discoveryClient.shutdown();
+		//discoveryClient.shutdown();
+		System.out.println("DiscoveryManagerController.offline()");
+		System.exit(0);
 		
-		return "";
+		return "111";
 	}
 	
 }

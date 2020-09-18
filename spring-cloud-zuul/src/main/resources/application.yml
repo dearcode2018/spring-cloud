@@ -1,10 +1,6 @@
 
 server:
   port: 1010
-  #servlet:
-    #context-path: /spring-cloud-zuul
-  connection-timeout:
-    seconds: 60
 
 
 spring:
@@ -16,9 +12,6 @@ spring:
   autoconfigure:
     exclude:
     - 
-
-  http:
-    log-request-details: true
 
 # spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
   devtools:
@@ -32,7 +25,7 @@ eureka:
   client:
     register-with-eureka: true
     service-url:
-      defaultZone: http://192.168.5.11:6868/eureka/
+      defaultZone: http://192.168.5.1:6868/eureka/
 
   #instance:
     #instance-id: ${server.address}:${server.port}

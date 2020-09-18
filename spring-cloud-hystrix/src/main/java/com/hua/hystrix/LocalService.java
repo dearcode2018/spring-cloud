@@ -8,17 +8,17 @@ package com.hua.hystrix;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.concurrent.TimeUnit;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.hua.bean.ResultBean;
 import com.hua.util.JacksonUtil;
+import com.netflix.hystrix.HystrixCommandProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.hystrix.contrib.javanica.conf.HystrixPropertiesManager;
 
 /**
  * @type LocalService
@@ -39,6 +39,9 @@ public class LocalService
 	@Resource
 	private ProviderFeignClientWithoutFB providerFeignClientWithoutFB;
 	
+	// HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE.name();
+	private static final String SEMAPHORE = "SEMAPHORE";
+	
 	/**
 	 * 本地服务
 	 * 
@@ -47,7 +50,6 @@ public class LocalService
 	 * 
 	 * fallback方法的签名需要和原先方法一样，否则会抛 FallbackDefinitionException
 	 */
-	
 	
 	/**
 	 * 
@@ -58,16 +60,23 @@ public class LocalService
 	// 指定失败调用的方法
 	//@HystrixCommand(fallbackMethod = "fallbackMethodGet")
 	@HystrixCommand(fallbackMethod = "localOnlyFallback", commandProperties = {
-			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
+			@HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_STRATEGY, value = SEMAPHORE),
 			// 自定义执行超时时间
-			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000")}, 
+			@HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS, value = "2000"),
+			// 窗口请求总数阈值
+			@HystrixProperty(name = HystrixPropertiesManager.CIRCUIT_BREAKER_REQUEST_VOLUME_THRESHOLD, value = "10"),
+			// 回路休眠时间 毫秒, 休眠过后会再次调用allowSingleTest()尝试再次发起请求
+			@HystrixProperty(name = HystrixPropertiesManager.CIRCUIT_BREAKER_SLEEP_WINDOW_IN_MILLISECONDS, value = "2000"),
+			//  回路请求错误比例
+			@HystrixProperty(name = HystrixPropertiesManager.CIRCUIT_BREAKER_ERROR_THRESHOLD_PERCENTAGE, value = "5")
+			}, 
 			// 新建线程池，达到资源隔离目的，若不存在该属性，则使用公共的线程池.
 			threadPoolKey = "newThreadPool1",
 			// 线程池配置
 			threadPoolProperties = {
-			@HystrixProperty(name = "coreSize", value = "5"),
-			// maxQueueSize=-1使用同步队列，线程池忙碌时拒绝新的请求
-			@HystrixProperty(name = "maxQueueSize", value = "10")})
+			@HystrixProperty(name = HystrixPropertiesManager.CORE_SIZE, value = "5"),
+			// maxQueueSize=-1使用同步队列，最多只存在一个线程，线程池忙碌时拒绝新的请求
+			@HystrixProperty(name = HystrixPropertiesManager.MAX_QUEUE_SIZE, value = "10")})
 	public ResultBean localOnly(final boolean ifThrow)
 	{
 		ResultBean resultBean = new ResultBean();
@@ -87,7 +96,8 @@ public class LocalService
 	 */
 	// 指定失败调用的方法
 	//@HystrixCommand(fallbackMethod = "fallbackMethodGet")
-	@HystrixCommand(fallbackMethod = "localOnlyFallback2", commandProperties = {@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE")})
+	@HystrixCommand(fallbackMethod = "localOnlyFallback2", commandProperties = {
+			@HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_STRATEGY, value = SEMAPHORE)})
 	public ResultBean localOnly2(final int timeoutSec)
 	{
 		ResultBean resultBean = new ResultBean();
@@ -111,7 +121,7 @@ public class LocalService
 	 */
 	// 指定失败调用的方法
 	//@HystrixCommand(fallbackMethod = "fallbackMethodGet")
-	@HystrixCommand(fallbackMethod = "localCallRemoteFallback", commandProperties = {@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE")})
+	@HystrixCommand(fallbackMethod = "localCallRemoteFallback", commandProperties = {@HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_STRATEGY, value = SEMAPHORE)})
 	public ResultBean localCallRemote(final String param)
 	{
 		ResultBean resultBean = new ResultBean();
