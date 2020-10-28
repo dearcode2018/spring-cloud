@@ -87,6 +87,13 @@
 			<optional>true</optional>
 		</dependency>	 -->
 		
+		<!-- 令牌桶算法 -->
+		<dependency>
+		    <groupId>com.github.vladimir-bukhtoyarov</groupId>
+		    <artifactId>bucket4j-core</artifactId>
+		</dependency>
+
+		
 	</dependencies>
 
 </project>

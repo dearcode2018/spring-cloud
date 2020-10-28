@@ -27,6 +27,7 @@ import com.hua.log.BaseLog;
 @DisplayName("BaseTest")
 public class BaseTest extends BaseLog {
 	
+	protected String prefix;
 	
 	/**
 	 * 
