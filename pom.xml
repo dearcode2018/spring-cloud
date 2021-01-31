@@ -8,12 +8,12 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<!-- spring boot的版本要和 spring cloud的版本对应起来，高版本则不支持 -->
-		<version>2.3.4.RELEASE</version>
+		<version>2.4.2</version>
 	</parent>
 
 	<groupId>com.hua</groupId>
 	<artifactId>spring-cloud-entire</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<name>spring-cloud-entire</name>
 	<description>spring-cloud Maven Entire Project</description>
@@ -31,6 +31,9 @@
 		<module>spring-cloud-config-server</module>
 		<module>spring-cloud-eureka</module>
 		<module>spring-cloud-feign</module>
+		<module>spring-cloud-feign-api</module>
+		<module>spring-cloud-feign-provider</module>
+		<module>spring-cloud-feign-use</module>
 		<module>spring-cloud-function</module>
 		<module>spring-cloud-hystrix</module>
 		<module>spring-cloud-ribbon</module>
@@ -51,7 +54,7 @@
 	<properties>
 		<jdk.version>1.8</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.version>0.0.1</maven.version>
+		<maven.version>1.0.0</maven.version>
 		<maven.plugin.compiler.version>3.3</maven.plugin.compiler.version>
 		<maven.plugin.source.version>2.4</maven.plugin.source.version>
 		<maven.plugin.surefire.version>2.18.1</maven.plugin.surefire.version>
@@ -59,11 +62,13 @@
 		<maven.plugin.resources.version>2.7</maven.plugin.resources.version>
 		<maven.plugin.dependency.version>2.10</maven.plugin.dependency.version>
 		<maven.plugin.war.version>3.0</maven.plugin.war.version>
-		<spring.cloud.core.version>0.0.1</spring.cloud.core.version>
-		<web.version>0.0.1</web.version>
-		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+		<spring.cloud.core.version>1.0.0</spring.cloud.core.version>
+		<web.version>1.0.0</web.version>
+		<spring-cloud.version>Hoxton.SR9</spring-cloud.version>
 		<jackson.version>2.11.1</jackson.version>
 		<bucket4j.version>5.0.0-beta.01-09-2020</bucket4j.version>
+		<spring-cloud-feign-api.version>1.0.0</spring-cloud-feign-api.version>
+		<common.version>1.0.0</common.version>
 	</properties>
 
 
@@ -154,14 +159,21 @@
 				</configuration>
 			</plugin>
 
-			<!-- 解决 web项目pom.xml报错 -->
+			<!-- 要将源码放上去，需要加入这个插件 -->
 			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
+				<artifactId>maven-source-plugin</artifactId>
 				<configuration>
-					<version>${maven.plugin.war.version}</version>
+					<attach>true</attach>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 
@@ -206,13 +218,25 @@
 				<version>${jackson.version}</version>
 			</dependency>
 
-		<!-- 令牌桶算法 -->
-		<dependency>
-		    <groupId>com.github.vladimir-bukhtoyarov</groupId>
-		    <artifactId>bucket4j-core</artifactId>
-		    <version>${bucket4j.version}</version>
-		</dependency>
+			<!-- 令牌桶算法 -->
+			<dependency>
+				<groupId>com.github.vladimir-bukhtoyarov</groupId>
+				<artifactId>bucket4j-core</artifactId>
+				<version>${bucket4j.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.hua</groupId>
+				<artifactId>spring-cloud-feign-api</artifactId>	
+				<version>${spring-cloud-feign-api.version}</version>		
+			</dependency>
 
+			<dependency>
+				<groupId>com.hua</groupId>
+				<artifactId>common</artifactId>
+				<version>${common.version}</version>
+			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 

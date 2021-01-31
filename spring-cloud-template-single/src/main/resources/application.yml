@@ -1,0 +1,38 @@
+
+server:
+  port: 7070
+ 
+  servlet:
+    context-path: /
+ 
+spring:
+  profiles:
+    active: dev
+    
+  application:
+    name: 
+  autoconfigure:
+    exclude:
+    - 
+
+# spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
+  devtools:
+    restart:
+    # dev模式下，修改配置，需要打开该功能配置-重启，配置才能生效
+    # 不过在云配置体系下，该功能用不上，只是在小型研究项目中使用到
+    # 频繁重启，对大型工程来说效率较低，因此会采用云配置实时生效的方式    
+      enabled: true
+      additional-paths:
+      - src/main/java
+
+
+
+
+
+
+
+
+
+
+
+

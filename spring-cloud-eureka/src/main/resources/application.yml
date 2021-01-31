@@ -17,8 +17,8 @@ eureka:
     registry-fetch-interval-seconds: 5    
     service-url: 
       # 对等实例的地址 (可以提取出来作为公共部分)
-      #defaultZone: http://192.168.5.11:6868/eureka/,http://192.168.5.12:6869/eureka/
-      defaultZone: http://192.168.5.11:6868/eureka/
+      #defaultZone: http://192.168.199.128:6868/eureka/,http://192.168.5.12:6869/eureka/
+      defaultZone: http://192.168.199.128:6868/eureka/
     # 健康检查
     healthcheck:
       enabled: true
@@ -44,8 +44,8 @@ server:
  
 eureka:
   instance:
-    #hostname: 192.168.5.11
-    ip-address: 192.168.5.11
+    #hostname: 192.168.199.128
+    ip-address: 192.168.199.128
     secure-port-enabled: true
     non-secure-port-enabled: false
     prefer-ip-address: true # 使用ip而不是hostname

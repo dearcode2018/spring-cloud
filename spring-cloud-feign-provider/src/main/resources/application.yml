@@ -1,0 +1,86 @@
+
+server:
+  port: 7070
+ 
+  servlet:
+    context-path: /
+ 
+spring:
+  profiles:
+    active: dev
+    
+  application:
+    name: spring-cloud-feign-provider
+  autoconfigure:
+    exclude:
+    - 
+
+
+# spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
+  devtools:
+    restart:
+    # dev模式下，修改配置，需要打开该功能配置-重启，配置才能生效
+    # 不过在云配置体系下，该功能用不上，只是在小型研究项目中使用到
+    # 频繁重启，对大型工程来说效率较低，因此会采用云配置实时生效的方式    
+      enabled: true
+      additional-paths:
+      - src/main/java
+
+# 注册中心
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5    
+    service-url: 
+      #defaultZone: http://192.168.5.11:6868/eureka/,http://192.168.5.12:6869/eureka/
+      defaultZone: http://192.168.199.128:6868/eureka/  instance:    instance-id: ${spring.cloud.client.ip-address}:${server.port}${server.servlet.context-path}${spring.application.name}
+    prefer-ip-address: true
+
+feign:
+  client: 
+    # false表示优先级较高为@Configuration
+    default-to-properties: false
+    config: 
+     # 所有客户端默认的属性
+      default: 
+        connect-timeout: 3000
+        read-timeout: 3000
+        logger-level: basic
+      # 特定客户端的属性
+      users: 
+        connect-timeout: 5000
+        read-timeout: 5000
+        decode404: false
+  # 开启okhttp      
+  okhttp:
+      enabled: true
+  # 请求/响应开启GZIP压缩
+  compression:
+    request:
+      enabled: true
+      # 要压缩的媒体类型
+      mime-types: text/xml,application/xml,application/json
+      # 最小请求阈值长度
+      min-request-size: 2048
+    response:
+      enabled: true
+  hystrix:
+    # 是否启用hystrix，启用hystrix之后Feign调用超时 
+    # timed-out and no fallback available. 原因暂时不明确
+    enabled: true
+  
+ribbon:
+  eureka:
+    enabled: true
+
+
+
+
+
+
+
+
+
+
+

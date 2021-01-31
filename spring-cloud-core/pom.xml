@@ -5,23 +5,41 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>spring-cloud-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>spring-cloud-core</artifactId>
 	<name>spring-cloud-core</name>
 	<packaging>jar</packaging>
 	
 	<properties>
-		<common.version>0.0.1</common.version>
+		<common.version>1.0.0</common.version>
 	</properties>
 
-	<!-- 使用spring boot 构建插件 运行: mvn spring-boot:run -->
 	<build>
 		<plugins>
-			<!-- package as an executable jar -->
+			<!-- 要将源码放上去，需要加入这个插件 -->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

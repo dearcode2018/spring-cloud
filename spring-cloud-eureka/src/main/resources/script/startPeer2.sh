@@ -14,7 +14,7 @@ cd `dirname $0`
 # 服务名称
 declare -r SVC_NAME='spring-cloud-eureka'
 # jar包名称
-declare -r SVC_JAR_NAME="$SVC_NAME-0.0.1.jar"
+declare -r SVC_JAR_NAME="$SVC_NAME-1.0.0.jar"
 # 服务路径
 declare -r SVC_DEP_HOME="/usr/local/spring-cloud"
 # 日志路径
