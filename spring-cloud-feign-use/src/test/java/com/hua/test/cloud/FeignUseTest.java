@@ -38,7 +38,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -50,6 +49,7 @@ import com.hua.test.BaseTest;
 import com.hua.util.ClassPathUtil;
 import com.hua.util.FileUtil;
 import com.hua.util.JacksonUtil;
+import com.netflix.discovery.EurekaClient;
 
 
 /**
@@ -97,6 +97,9 @@ public final class FeignUseTest extends BaseTest {
 	@Resource
 	private SomeFeignClient someFeignClient;
 	
+	@Resource
+	private EurekaClient eurekaClient;
+	
 	/**
 	 * 引当前项目用其他项目之后，然后可以使用
 	 * SpringJunitTest模板测试的其他项目
@@ -121,7 +124,6 @@ public final class FeignUseTest extends BaseTest {
             ResultBean result = someFeignClient.get(content);
             assertNotNull(result);
             System.out.println(JacksonUtil.writeAsString(result));
-            
         } catch (Exception e) {
             log.error("test =====> ", e);
         }
@@ -258,7 +260,7 @@ public final class FeignUseTest extends BaseTest {
 	@Test
 	public void testTemp() {
 		try {
-			
+		    eurekaClient.shutdown();
 			
 		} catch (Exception e) {
 			log.error("testTemp=====> ", e);

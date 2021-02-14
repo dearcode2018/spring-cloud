@@ -8,7 +8,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<!-- spring boot的版本要和 spring cloud的版本对应起来，高版本则不支持 -->
-		<version>2.4.2</version>
+		<version>2.3.8.RELEASE</version>
 	</parent>
 
 	<groupId>com.hua</groupId>
