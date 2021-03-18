@@ -6,19 +6,17 @@
  */
 package com.hua.contract.mvc;
 
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hua.bean.ResultBean;
 import com.hua.configuration.FeignConfig4Provider2;
 import com.hua.contract.mvc.FileUploadClient.FileUploadClientFallbackFactory;
 import com.hua.util.ExceptionUtil;
-
-import feign.hystrix.FallbackFactory;
 
 /**
  * @type FileUploadClient

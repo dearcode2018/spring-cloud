@@ -6,6 +6,7 @@
  */
 package com.hua.contract.mvc;
 
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hua.bean.ResultBean;
 import com.hua.configuration.FeignConfig4Provider2;
 import com.hua.contract.mvc.FeignClientWithFallback.ProviderFallbackFactory;
-
-import feign.hystrix.FallbackFactory;
 
 /**
  * @type FeignClientWithFallback

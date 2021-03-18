@@ -33,7 +33,8 @@ eureka:
     registry-fetch-interval-seconds: 5    
     service-url: 
       #defaultZone: http://192.168.5.11:6868/eureka/,http://192.168.5.12:6869/eureka/
-      defaultZone: http://192.168.199.128:6868/eureka/
+      #defaultZone: http://192.168.199.128:6868/eureka/
+      defaultZone: http://[fe80::34b2:2214:fc7f:e68c]:6868/eureka/
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}${server.servlet.context-path}${spring.application.name}
     prefer-ip-address: true

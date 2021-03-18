@@ -9,7 +9,6 @@ package com.hua;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
  /**
@@ -29,7 +28,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 //@ComponentScan
 //@EnableDiscoveryClient
 /* 开启 Hystrix 仪表板 */
-@EnableHystrixDashboard
+//@EnableHystrixDashboard
 @EnableFeignClients
 /* 开启断路器 */
 @EnableHystrix

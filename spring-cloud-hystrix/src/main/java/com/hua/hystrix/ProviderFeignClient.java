@@ -6,6 +6,7 @@
  */
 package com.hua.hystrix;
 
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,6 @@ import com.hua.hystrix.ProviderFeignClient.ProviderFallbackFactory;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.netflix.hystrix.contrib.javanica.conf.HystrixPropertiesManager;
-
-import feign.hystrix.FallbackFactory;
 
 /**
  * @type ProviderFeignClient

@@ -8,9 +8,9 @@ package com.hua.contract.mvc;
 
 import java.util.List;
 
-import com.hua.entity.User;
+import org.springframework.cloud.openfeign.FallbackFactory;
 
-import feign.hystrix.FallbackFactory;
+import com.hua.entity.User;
 
 /**
  * @type UserClientFallbackFactory

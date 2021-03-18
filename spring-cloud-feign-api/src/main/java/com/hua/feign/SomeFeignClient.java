@@ -6,6 +6,7 @@
  */
 package com.hua.feign;
 
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.MediaType;
@@ -22,8 +23,6 @@ import com.hua.configuration.DefaultFeignConfig;
 import com.hua.entity.User;
 import com.hua.feign.SomeFeignClient.SomeFallbackFactory;
 import com.hua.util.JacksonUtil;
-
-import feign.hystrix.FallbackFactory;
 
 /**
  * @type SomeFeignClient

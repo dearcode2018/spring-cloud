@@ -2,15 +2,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<!-- 继承 spring boot -->
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<!-- spring boot的版本要和 spring cloud的版本对应起来，高版本则不支持 -->
-		<version>2.3.8.RELEASE</version>
-	</parent>
-
 	<groupId>com.hua</groupId>
 	<artifactId>spring-cloud-entire</artifactId>
 	<version>1.0.0</version>
@@ -64,13 +55,81 @@
 		<maven.plugin.war.version>3.0</maven.plugin.war.version>
 		<spring.cloud.core.version>1.0.0</spring.cloud.core.version>
 		<web.version>1.0.0</web.version>
-		<spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+		<spring-boot.version>2.4.3</spring-boot.version>			
+		<spring-cloud.version>2020.0.1</spring-cloud.version>
+		<spring-cloud-services.version>2.4.1</spring-cloud-services.version>		
 		<jackson.version>2.11.1</jackson.version>
 		<bucket4j.version>5.0.0-beta.01-09-2020</bucket4j.version>
 		<spring-cloud-feign-api.version>1.0.0</spring-cloud-feign-api.version>
 		<common.version>1.0.0</common.version>
 	</properties>
 
+	<!-- 将依赖放入 dependencyManagement 中 可以解决 spring boot 父级依赖的冲突 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>	 		
+		
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<!-- 令牌桶算法 -->
+			<dependency>
+				<groupId>com.github.vladimir-bukhtoyarov</groupId>
+				<artifactId>bucket4j-core</artifactId>
+				<version>${bucket4j.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.hua</groupId>
+				<artifactId>spring-cloud-feign-api</artifactId>	
+				<version>${spring-cloud-feign-api.version}</version>		
+			</dependency>
+
+			<dependency>
+				<groupId>com.hua</groupId>
+				<artifactId>common</artifactId>
+				<version>${common.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.pivotal.spring.cloud</groupId>
+				<artifactId>spring-cloud-services-dependencies</artifactId>
+				<version>${spring-cloud-services.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+		</dependencies>
+	</dependencyManagement>
 
 	<!-- 公共构建 -->
 	<build>
@@ -188,57 +247,6 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
-	<!-- 将依赖放入 dependencyManagement 中 可以解决 spring boot 父级依赖的冲突 -->
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-core</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-databind</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-annotations</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-
-			<!-- 令牌桶算法 -->
-			<dependency>
-				<groupId>com.github.vladimir-bukhtoyarov</groupId>
-				<artifactId>bucket4j-core</artifactId>
-				<version>${bucket4j.version}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>com.hua</groupId>
-				<artifactId>spring-cloud-feign-api</artifactId>	
-				<version>${spring-cloud-feign-api.version}</version>		
-			</dependency>
-
-			<dependency>
-				<groupId>com.hua</groupId>
-				<artifactId>common</artifactId>
-				<version>${common.version}</version>
-			</dependency>
-			
-		</dependencies>
-	</dependencyManagement>
 
 
 </project>

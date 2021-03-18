@@ -9,10 +9,6 @@ package com.hua.controller;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,8 +24,7 @@ import com.hua.util.IOUtil;
  * @author qianye.zheng
  */
 @RestController
-@RequestMapping("/some")
-public class SomeController extends BaseController implements  SomeFeignClient
+public class SomeController extends BaseController implements SomeFeignClient
 {
     
     /**
@@ -38,7 +33,6 @@ public class SomeController extends BaseController implements  SomeFeignClient
      * @return
      * @author qianye.zheng
      */
-    @GetMapping("/get")
     @Override
     public ResultBean get(String content) {
         ResultBean resultBean = new ResultBean();
@@ -56,7 +50,6 @@ public class SomeController extends BaseController implements  SomeFeignClient
      * @return
      * @author qianye.zheng
      */
-    @GetMapping("/get-many")
     @Override
     public ResultBean getMany(User param) {
         ResultBean resultBean = new ResultBean();
@@ -74,7 +67,6 @@ public class SomeController extends BaseController implements  SomeFeignClient
      * @return
      * @author qianye.zheng
      */
-    @PostMapping("/post")
     @Override
     public ResultBean post(User param) {
         ResultBean resultBean = new ResultBean();
@@ -92,7 +84,6 @@ public class SomeController extends BaseController implements  SomeFeignClient
      * @return
      * @author qianye.zheng
      */
-    @PostMapping(value = "/file-upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Override
     public ResultBean fileUpload(MultipartFile file) {
         ResultBean resultBean = new ResultBean();
@@ -116,7 +107,6 @@ public class SomeController extends BaseController implements  SomeFeignClient
      * @return
      * @author qianye.zheng
      */
-    @GetMapping("/file-download")
     @Override
     public byte[] fileDownload(String filename) {
         String path = "/file/img/" + filename;

@@ -15,7 +15,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.client.loadbalancer.LoadBalancedRetryFactory;
-import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -132,8 +131,8 @@ public class ClientConfiguration
 	
 /* ===========================  WebClient为客户端 ========================== */	
 	
-	@Resource
-	private LoadBalancerExchangeFilterFunction lbFunction;
+	//@Resource
+	//private LoadBalancerExchangeFilterFunction lbFunction;
 	
 	/**
 	 * 
@@ -145,8 +144,8 @@ public class ClientConfiguration
 	@LoadBalanced
 	public WebClient loadBalancedWebClient()
 	{
-		
-		return WebClient.builder().filter(lbFunction).build();
+		return null;
+		//return WebClient.builder().filter(lbFunction).build();
 	}
 	
 	

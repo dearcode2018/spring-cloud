@@ -12,7 +12,6 @@
 	<packaging>jar</packaging>
 	
 	<properties>
-		<common.version>1.0.0</common.version>
 	</properties>
 
 	<build>
@@ -48,7 +47,6 @@
 		<dependency>
 			<groupId>com.hua</groupId>
 			<artifactId>common</artifactId>
-			<version>${common.version}</version>
 		</dependency>		
 	
 		<!-- spring boot starter web -->
