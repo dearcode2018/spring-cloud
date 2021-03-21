@@ -55,8 +55,8 @@
 		<maven.plugin.war.version>3.0</maven.plugin.war.version>
 		<spring.cloud.core.version>1.0.0</spring.cloud.core.version>
 		<web.version>1.0.0</web.version>
-		<spring-boot.version>2.4.3</spring-boot.version>			
-		<spring-cloud.version>2020.0.1</spring-cloud.version>
+		<spring-boot.version>2.3.9.RELEASE</spring-boot.version>			
+		<spring-cloud.version>Hoxton.SR10</spring-cloud.version>
 		<spring-cloud-services.version>2.4.1</spring-cloud-services.version>		
 		<jackson.version>2.11.1</jackson.version>
 		<bucket4j.version>5.0.0-beta.01-09-2020</bucket4j.version>

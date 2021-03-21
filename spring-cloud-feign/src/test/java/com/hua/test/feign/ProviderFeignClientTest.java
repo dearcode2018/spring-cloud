@@ -33,10 +33,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.hua.ApplicationStarter;
 import com.hua.bean.Param1;
 import com.hua.bean.ResultBean;
-import com.hua.contract.mvc.FeignClientWithoutFallback;
-import com.hua.contract.mvc.ProviderFeignClient;
-import com.hua.contract.mvc.ProviderFeignClient2;
 import com.hua.entity.User;
+import com.hua.mvc.FeignClientWithoutFallback;
+import com.hua.mvc.ProviderFeignClient;
+import com.hua.mvc.ProviderFeignClient2;
 import com.hua.test.BaseTest;
 import com.hua.util.JacksonUtil;
 

@@ -42,7 +42,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.hua.ApplicationStarter;
 import com.hua.bean.ResultBean;
-import com.hua.contract.mvc.FileUploadClient;
+import com.hua.mvc.FileUploadClient;
 import com.hua.test.BaseTest;
 import com.hua.util.ClassPathUtil;
 import com.hua.util.JacksonUtil;

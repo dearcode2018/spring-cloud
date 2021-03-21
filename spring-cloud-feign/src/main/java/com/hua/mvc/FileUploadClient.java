@@ -4,7 +4,7 @@
   * @version 1.0
   * @author qianye.zheng
  */
-package com.hua.contract.mvc;
+package com.hua.mvc;
 
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hua.bean.ResultBean;
 import com.hua.configuration.FeignConfig4Provider2;
-import com.hua.contract.mvc.FileUploadClient.FileUploadClientFallbackFactory;
+import com.hua.mvc.FileUploadClient.FileUploadClientFallbackFactory;
 import com.hua.util.ExceptionUtil;
 
 /**

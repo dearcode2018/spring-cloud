@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hua.ApplicationStarter;
-import com.hua.contract.mvc.FeignClientBuilder;
+import com.hua.mvc.FeignClientBuilder;
 import com.hua.test.BaseTest;
 
 

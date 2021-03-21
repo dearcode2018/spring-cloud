@@ -4,7 +4,7 @@
   * @version 1.0
   * @author qianye.zheng
  */
-package com.hua.contract.mvc;
+package com.hua.mvc;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;

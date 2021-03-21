@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hua.bean.ResultBean;
 import com.hua.constant.UriConstant;
-import com.hua.contract.mvc.FileUploadClient;
+import com.hua.mvc.FileUploadClient;
 
  /**
  * @type UploadController

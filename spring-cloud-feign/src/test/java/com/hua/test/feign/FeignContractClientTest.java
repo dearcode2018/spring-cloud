@@ -32,8 +32,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hua.ApplicationStarter;
 import com.hua.bean.ResultBean;
-import com.hua.contract.feign.FeignContractClient;
 import com.hua.entity.User;
+import com.hua.feign.FeignContractClient;
 import com.hua.test.BaseTest;
 import com.hua.util.JacksonUtil;
 

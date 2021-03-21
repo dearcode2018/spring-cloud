@@ -7,7 +7,7 @@
 package com.hua;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -22,7 +22,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 /* @SpringBootApplication已经包含 @Configuration @EnableAutoConfiguration @ComponentScan */
 //@SpringBootApplication(scanBasePackages = {"com.hua"})
 /* 该类在根包(basePackage)下，则无须再指定scanBasePackages */
-@SpringCloudApplication
+@SpringBootApplication
+//声明一个Eureka服务
+@EnableDiscoveryClient
 // OpenFeign
 @EnableFeignClients
 //@EnableDiscoveryClient

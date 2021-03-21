@@ -32,7 +32,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hua.ApplicationStarter;
 import com.hua.bean.ResultBean;
-import com.hua.contract.mvc.FeignClientWithFallback;
+import com.hua.mvc.FeignClientWithFallback;
 import com.hua.test.BaseTest;
 import com.hua.util.JacksonUtil;
 

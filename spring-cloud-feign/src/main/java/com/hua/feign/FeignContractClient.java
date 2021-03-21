@@ -4,7 +4,7 @@
   * @version 1.0
   * @author qianye.zheng
  */
-package com.hua.contract.feign;
+package com.hua.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 
