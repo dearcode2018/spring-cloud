@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.discovery.EurekaClient;
+
 /**
  * @type DiscoveryManagerController
  * @description 
@@ -29,6 +31,9 @@ public class DiscoveryManagerController extends BaseController {
 	@Resource
 	private EurekaRegistration eurekaRegistration;
 	
+	@Resource
+	EurekaClient eurekaClient;
+	
 	/**
 	 * 
 	 * @description 
@@ -40,10 +45,32 @@ public class DiscoveryManagerController extends BaseController {
 		//discoveryClient.shutdown();
 		System.out.println("DiscoveryManagerController.offline()");
 		// 注册 - 上线
-		eurekaServiceRegistry.register(eurekaRegistration);
+		//eurekaServiceRegistry.register(eurekaRegistration);
 		
 		// 取消注册 - 下线
 		//eurekaServiceRegistry.deregister(eurekaRegistration);
+		
+		eurekaClient.shutdown();
+		//System.exit(0);
+		
+		return "111";
+	}
+	
+	/**
+	 * 
+	 * @description 
+	 * @return
+	 * @author qianye.zheng
+	 */
+	@GetMapping("/offline2")
+	public String offline2() {
+		//discoveryClient.shutdown();
+		System.out.println("DiscoveryManagerController.offline()");
+		// 注册 - 上线
+		eurekaServiceRegistry.register(eurekaRegistration);
+		
+		// 取消注册 - 下线
+		eurekaServiceRegistry.deregister(eurekaRegistration);
 		//System.exit(0);
 		
 		return "111";

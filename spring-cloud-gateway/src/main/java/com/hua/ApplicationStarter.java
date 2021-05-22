@@ -8,7 +8,8 @@ package com.hua;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
  /**
  * @type ApplicationStarter
@@ -25,8 +26,8 @@ import org.springframework.context.annotation.ImportResource;
 //@Configuration
 //@EnableAutoConfiguration
 //@ComponentScan
-//@EnableDiscoveryClient
-//@EnableCircuitBreaker
+@EnableDiscoveryClient
+@EnableCircuitBreaker
 //@EnableHystrixDashboard //
 //@EntityScan
 public class ApplicationStarter

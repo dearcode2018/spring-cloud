@@ -13,6 +13,7 @@
 	<modules>
 		<!-- 模板 -->
 		<module>spring-cloud-template</module>
+		<module>spring-cloud-template-single</module>
 		<module>spring-cloud-actuator</module>
 		<module>spring-cloud-core</module>
 		<module>spring-cloud-client</module>

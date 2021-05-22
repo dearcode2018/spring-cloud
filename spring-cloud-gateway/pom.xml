@@ -1,7 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>spring-cloud-entire</artifactId>
@@ -15,63 +14,20 @@
 	
 	</properties>
 
-	<!-- 使用spring boot 构建插件 运行: mvn spring-boot:run -->
-	<build>
-		<plugins>
-			<!-- package as an executable jar -->
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>spring-cloud-core</artifactId>
-			<version>${spring.cloud.core.version}</version>
-		</dependency>		
-	
-<!-- 		<dependency>
-			<groupId>com.hua</groupId>
-			<artifactId>web</artifactId>
-			<version>${web.version}</version>
-		</dependency> -->
-		
-		<!-- spring boot starter web -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<!-- 把一些多余的日志依赖去除，解决日志冲突问题 -->
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>log4j-over-slf4j</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>jcl-over-slf4j</artifactId>
-				</exclusion>			
-				<exclusion>
-					<groupId>ch.qos.logback</groupId>
-					<artifactId>logback-classic</artifactId>
-				</exclusion>		
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>jul-to-slf4j</artifactId>
-				</exclusion>	
-				<!-- 排除和log4j2冲突 -->	
-				<exclusion>
-   					 <groupId>org.apache.logging.log4j</groupId>
- 					 <artifactId>log4j-to-slf4j</artifactId>  					 				
-				</exclusion>														
-			</exclusions>
-		</dependency>	
+			<artifactId>common</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-gateway</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
 		
 		<!-- 测试 -->
@@ -92,8 +48,18 @@
 		    <groupId>com.github.vladimir-bukhtoyarov</groupId>
 		    <artifactId>bucket4j-core</artifactId>
 		</dependency>
-
 		
 	</dependencies>
+
+	<!-- 使用spring boot 构建插件 运行: mvn spring-boot:run -->
+	<build>
+		<plugins>
+			<!-- package as an executable jar -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

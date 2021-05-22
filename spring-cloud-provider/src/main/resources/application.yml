@@ -23,7 +23,7 @@ spring:
 # spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
   devtools:
     restart:
-      enabled: true
+      enabled: false
       additional-paths:
       - src/main/java
 
@@ -39,7 +39,8 @@ eureka:
       #defaultZone: http://172.25.62.113:123456@peer2:8761/eureka/,http://172.25.62.183:6600/eureka/,http://172.25.62.184:6600/eureka/,http://172.25.62.185:6600/eureka/,http://172.25.62.50:7200/eureka/,http://172.25.102.121:8761/eureka/ 
       #defaultZone: http://172.25.102.121:8761/eureka/ 
       #defaultZone: http://172.25.62.50:7200/eureka/
-      defaultZone: http://192.168.5.1:6868/eureka/
+      #defaultZone: http://192.168.5.1:6868/eureka/
+      defaultZone: http://dev-registry.polyv.net:8760/eureka/
   #instance:
     #instance-id: ${spring.application.name}:${server.port}
 
